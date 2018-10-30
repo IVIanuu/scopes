@@ -25,9 +25,6 @@ import kotlinx.coroutines.launch
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
 
-/**
- * Launches a coroutine and cancels the job when [this] scope gets closed
- */
 fun Scope.launch(
     context: CoroutineContext = EmptyCoroutineContext,
     start: CoroutineStart = CoroutineStart.DEFAULT,
@@ -35,9 +32,6 @@ fun Scope.launch(
 ) = GlobalScope.launch(context, start, block)
     .cancelBy(this)
 
-/**
- * Launches a coroutine and cancels the job when [this] scope gets closed
- */
 fun <T> Scope.async(
     context: CoroutineContext = EmptyCoroutineContext,
     start: CoroutineStart = CoroutineStart.DEFAULT,
