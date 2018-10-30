@@ -1,0 +1,60 @@
+/*
+ * Copyright 2018 Manuel Wrage
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.ivianuu.scopes.android
+
+import android.os.Build
+import android.view.View
+import com.ivianuu.scopes.BaseScope
+import com.ivianuu.scopes.OutsideLifecycleException
+import com.ivianuu.scopes.Scope
+import com.ivianuu.scopes.cache.ScopeStore
+
+private val viewScopes = ScopeStore<View> { ViewScope(it) }
+
+/**
+ * A [Scope] which will be re used on this instance
+ */
+val View.scope: Scope
+    get() = viewScopes.get(this)
+
+/**
+ * A [Scope] for [View]'s
+ */
+class ViewScope(private val view: View) : BaseScope() {
+
+    init {
+        val isAttached =
+            (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && view.isAttachedToWindow)
+                    || view.windowToken != null
+
+        if (!isAttached) {
+            throw OutsideLifecycleException("view not attached")
+        }
+
+        val listener = object : View.OnAttachStateChangeListener {
+            override fun onViewAttachedToWindow(v: View) {
+            }
+
+            override fun onViewDetachedFromWindow(v: View) {
+                view.removeOnAttachStateChangeListener(this)
+                close()
+            }
+        }
+
+        view.addOnAttachStateChangeListener(listener)
+    }
+}
