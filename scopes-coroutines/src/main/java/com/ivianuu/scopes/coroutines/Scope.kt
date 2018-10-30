@@ -37,4 +37,4 @@ fun <T> Scope.async(
     start: CoroutineStart = CoroutineStart.DEFAULT,
     block: suspend CoroutineScope.() -> T
 ) = GlobalScope.async(context, start, block)
-    .cancelBy(this)
+    .also { it.cancelBy(this) }
