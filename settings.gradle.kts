@@ -1,5 +1,5 @@
 /*
- * Copyright 2017 Manuel Wrage
+ * Copyright 2018 Manuel Wrage
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,15 @@
  * limitations under the License.
  */
 
-apply plugin: 'java-library'
-apply plugin: 'kotlin'
-
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
-
-dependencies {
-    api project(':scopes')
-    api Deps.kotlinStdLib
-}
-
-//apply from: rootProject.file('gradle/local-publish.gradle')
+include(
+    ":sample",
+    ":scopes",
+    ":scopes-android",
+    ":scopes-archlifecycle",
+    ":scopes-archlifecycle-fragment",
+    ":scopes-cache",
+    ":scopes-coroutines",
+    ":scopes-director",
+    ":scopes-lifecycle",
+    ":scopes-rx"
+)

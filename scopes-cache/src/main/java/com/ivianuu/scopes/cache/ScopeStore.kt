@@ -17,6 +17,8 @@
 package com.ivianuu.scopes.cache
 
 import com.ivianuu.scopes.Scope
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
 
 /**
  * A cache for [Scope]'s
@@ -24,13 +26,17 @@ import com.ivianuu.scopes.Scope
 class ScopeStore<K>(private val factory: (K) -> Scope) {
 
     private val scopes = mutableMapOf<K, Scope>()
+    private val lock = ReentrantLock()
 
-    fun get(key: K) =
+    fun get(key: K) = lock.withLock {
         scopes.getOrPut(key) {
             factory(key).also { trackClose(it, key) }
         }
+    }
 
     private fun trackClose(scope: Scope, key: K) {
-        scope.addListener { scopes.remove(key) }
+        scope.addListener {
+            lock.withLock { scopes.remove(key) }
+        }
     }
 }

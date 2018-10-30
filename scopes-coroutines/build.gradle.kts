@@ -1,5 +1,7 @@
+import java.io.File
+
 /*
- * Copyright 2017 Manuel Wrage
+ * Copyright 2018 Manuel Wrage
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +16,18 @@
  * limitations under the License.
  */
 
-apply plugin: 'java-library'
-apply plugin: 'kotlin'
-
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
-
-dependencies {
-    api Deps.kotlinStdLib
-    api Deps.rxJava
-    api project(':scopes')
+plugins {
+    id("java-library")
+    id("kotlin")
 }
 
-//apply from: rootProject.file('gradle/local-publish.gradle')
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_6
+    targetCompatibility = JavaVersion.VERSION_1_6
+}
+
+dependencies {
+    api(Deps.coroutinesCore)
+    api(project(":scopes"))
+    api(Deps.kotlinStdLib)
+}

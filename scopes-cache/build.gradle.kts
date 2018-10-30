@@ -1,5 +1,7 @@
+import java.io.File
+
 /*
- * Copyright 2017 Manuel Wrage
+ * Copyright 2018 Manuel Wrage
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,22 +16,18 @@
  * limitations under the License.
  */
 
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
+plugins {
+    id("java-library")
+    id("kotlin")
+}
 
-android {
-    compileSdkVersion Versions.compileSdk
-
-    defaultConfig {
-        minSdkVersion Versions.minSdk
-        targetSdkVersion Versions.targetSdk
-    }
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_6
+    targetCompatibility = JavaVersion.VERSION_1_6
 }
 
 dependencies {
-    api Deps.kotlinStdLib
-    api project(':scopes')
-    api project(':scopes-cache')
+    api(project(":scopes"))
+    api(project(":scopes-lifecycle"))
+    api(Deps.kotlinStdLib)
 }
-
-//apply from: rootProject.file('gradle/local-publish.gradle')

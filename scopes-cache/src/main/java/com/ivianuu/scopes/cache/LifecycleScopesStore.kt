@@ -17,6 +17,8 @@
 package com.ivianuu.scopes.cache
 
 import com.ivianuu.scopes.lifecycle.LifecycleScopes
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
 
 /**
  * A cache for [LifecycleScopes]'s
@@ -27,15 +29,18 @@ class LifecycleScopesStore<K, E>(
 ) {
 
     private val lifecycleScopes = mutableMapOf<K, LifecycleScopes<E>>()
+    private val lock = ReentrantLock()
 
-    fun get(key: K): LifecycleScopes<E> {
-        return lifecycleScopes.getOrPut(key) {
+    fun get(key: K): LifecycleScopes<E> = lock.withLock {
+        lifecycleScopes.getOrPut(key) {
             CacheLifecycleScopes(factory(key))
                 .also { trackTermination(it, key) }
         }
     }
 
     private fun trackTermination(scopes: LifecycleScopes<E>, key: K) {
-        scopes.scopeFor(terminationEvent).addListener { lifecycleScopes.remove(key) }
+        scopes.scopeFor(terminationEvent).addListener {
+            lock.withLock { lifecycleScopes.remove(key) }
+        }
     }
 }

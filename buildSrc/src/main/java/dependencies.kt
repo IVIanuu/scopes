@@ -1,14 +1,16 @@
-object Versions {
-    // android
+object Build {
+    const val applicationId = "com.ivianuu.scopes.sample"
+    const val buildToolsVersion = "28.0.3"
+
     const val compileSdk = 28
-    const val minSdk = 14
-    const val minSdkDirector = 16
+    const val minSdk = 21
     const val targetSdk = 28
     const val versionCode = 1
     const val versionName = "0.0.1"
-    const val groupId = "com.github.IVIanuu.scopes"
+}
 
-    const val androidGradlePlugin = "3.2.0"
+object Versions {
+    const val androidGradlePlugin = "3.2.1"
 
     const val androidx = "1.0.0"
     const val androidxArch = "2.0.0-rc01"

@@ -14,4 +14,28 @@
  * limitations under the License.
  */
 
-include ':sample', ':scopes', ':scopes-rx', ':scopes-archlifecycle', ':scopes-coroutines', ':scopes-android', ':scopes-director', ':scopes-archlifecycle-fragment', ':scopes-lifecycle', ':scopes-cache'
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        maven("https://dl.bintray.com/kotlin/kotlin-eap")
+    }
+    dependencies {
+        classpath(Deps.androidGradlePlugin)
+        classpath(Deps.kotlinGradlePlugin)
+        classpath(Deps.mavenGradlePlugin)
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven("https://dl.bintray.com/kotlin/kotlin-eap")
+        maven("https://jitpack.io")
+    }
+}
+
+task("clean", Delete::class) {
+    delete(rootProject.buildDir)
+}
