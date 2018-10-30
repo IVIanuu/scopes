@@ -19,6 +19,8 @@ package com.ivianuu.scopes.archlifecycle
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 
+val LifecycleOwner.lifecycleScopes get() = lifecycle.lifecycleScopes
+
 fun LifecycleOwner.scopeFor(event: Lifecycle.Event) =
     lifecycle.scopeFor(event)
 

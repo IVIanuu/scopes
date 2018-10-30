@@ -32,6 +32,7 @@ java {
 dependencies {
     api(Deps.kotlinStdLib)
     api(project(":scopes"))
+    api(project(":scopes-lifecycle"))
     api(Deps.rxJava)
 }
 

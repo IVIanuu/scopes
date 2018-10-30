@@ -14,16 +14,25 @@
  * limitations under the License.
  */
 
-include(
-    ":sample",
-    ":scopes",
-    ":scopes-android",
-    ":scopes-archlifecycle",
-    ":scopes-archlifecycle-fragment",
-    ":scopes-cache",
-    ":scopes-common",
-    ":scopes-coroutines",
-    ":scopes-director",
-    ":scopes-lifecycle",
-    ":scopes-rx"
-)
+package com.ivianuu.scopes.rx
+
+import com.ivianuu.scopes.Scope
+import io.reactivex.Completable
+
+/**
+ * Completes when [this] gets closed
+ */
+val Scope.onClose: Completable
+    get() = Completable.create { e ->
+        val listener = {
+            if (!e.isDisposed) {
+                e.onComplete()
+            }
+        }
+
+        e.setCancellable(listener)
+
+        if (!e.isDisposed) {
+            addListener(listener)
+        }
+    }

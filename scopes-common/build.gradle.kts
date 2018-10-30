@@ -1,3 +1,5 @@
+import org.gradle.jvm.tasks.Jar
+import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
 import java.io.File
 
 /*
@@ -17,32 +19,40 @@ import java.io.File
  */
 
 plugins {
-    id("java-library")
-    id("kotlin")
+    id("com.android.library")
+    id("kotlin-android")
+    id("kotlin-android-extensions")
     id("com.github.dcendents.android-maven")
 }
 
 group = "com.github.ivianuu"
 
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+android {
+    compileSdkVersion(Build.compileSdk)
+
+    defaultConfig {
+        buildToolsVersion = Build.buildToolsVersion
+        minSdkVersion(Build.minSdk)
+        targetSdkVersion(Build.targetSdk)
+    }
 }
 
 dependencies {
-    api(Deps.coroutinesCore)
-    api(Deps.kotlinStdLib)
     api(project(":scopes"))
     api(project(":scopes-lifecycle"))
 }
 
 val sourcesJar = task("sourcesJar", Jar::class) {
-    dependsOn("classes")
-    from(sourceSets["main"].allSource)
+    from(android.sourceSets["main"].java.srcDirs)
     classifier = "sources"
 }
 
-val javadoc = tasks.getByName("javadoc") as Javadoc
+val javadoc = task("javadoc", Javadoc::class) {
+    isFailOnError = false
+    source = android.sourceSets["main"].java.sourceFiles
+    classpath += project.files(android.bootClasspath.joinToString(File.pathSeparator))
+    classpath += configurations.compile
+}
 
 val javadocJar = task("javadocJar", Jar::class) {
     dependsOn(javadoc)

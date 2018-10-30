@@ -14,16 +14,25 @@
  * limitations under the License.
  */
 
-include(
-    ":sample",
-    ":scopes",
-    ":scopes-android",
-    ":scopes-archlifecycle",
-    ":scopes-archlifecycle-fragment",
-    ":scopes-cache",
-    ":scopes-common",
-    ":scopes-coroutines",
-    ":scopes-director",
-    ":scopes-lifecycle",
-    ":scopes-rx"
-)
+package com.ivianuu.scopes.rx
+
+import com.ivianuu.scopes.lifecycle.Lifecycle
+import io.reactivex.Observable
+
+/**
+ * Emits events of [this]
+ */
+val <T> Lifecycle<T>.observable: Observable<T>
+    get() = Observable.create { e ->
+        val listener: (T) -> Unit = {
+            if (!e.isDisposed) {
+                e.onNext(it)
+            }
+        }
+
+        e.setCancellable { removeListener(listener) }
+
+        if (!e.isDisposed) {
+            addListener(listener)
+        }
+    }

@@ -15,7 +15,7 @@ object Versions {
     const val androidx = "1.0.0"
     const val androidxArch = "2.0.0-rc01"
 
-    const val coroutines = "0.26.1-eap13"
+    const val coroutines = "1.0.0"
 
     const val director = "e65340eb7d"
 

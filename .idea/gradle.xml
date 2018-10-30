@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/scopes-archlifecycle" />
             <option value="$PROJECT_DIR$/scopes-archlifecycle-fragment" />
             <option value="$PROJECT_DIR$/scopes-cache" />
+            <option value="$PROJECT_DIR$/scopes-common" />
             <option value="$PROJECT_DIR$/scopes-coroutines" />
             <option value="$PROJECT_DIR$/scopes-director" />
             <option value="$PROJECT_DIR$/scopes-lifecycle" />
