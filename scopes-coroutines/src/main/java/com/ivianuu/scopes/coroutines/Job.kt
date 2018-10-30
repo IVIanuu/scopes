@@ -35,8 +35,8 @@ private class ScopeJob(
         scope.addListener(listener)
     }
 
-    override fun cancel(cause: Throwable?): Boolean {
+    override fun cancel() {
         scope.removeListener(listener)
-        return job.cancel()
+        job.cancel()
     }
 }
