@@ -19,14 +19,36 @@ import java.io.File
 plugins {
     id("java-library")
     id("kotlin")
+    id("com.github.dcendents.android-maven")
 }
 
+group = "com.github.ivianuu"
+
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_6
-    targetCompatibility = JavaVersion.VERSION_1_6
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
 }
 
 dependencies {
-    api(project(":scopes"))
     api(Deps.kotlinStdLib)
+    api(project(":scopes"))
+}
+
+val sourcesJar = task("sourcesJar", Jar::class) {
+    dependsOn("classes")
+    from(sourceSets["main"].allSource)
+    classifier = "sources"
+}
+
+val javadoc = tasks.getByName("javadoc") as Javadoc
+
+val javadocJar = task("javadocJar", Jar::class) {
+    dependsOn(javadoc)
+    classifier = "javadoc"
+    from(javadoc.destinationDir)
+}
+
+artifacts {
+    add("archives", sourcesJar)
+    add("archives", javadocJar)
 }
