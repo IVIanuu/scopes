@@ -21,6 +21,9 @@ package com.ivianuu.scopes.lifecycle
  */
 class MutableLifecycle<T> : BaseLifecycle<T>() {
 
+    /**
+     * Sends the [event] to all listeners
+     */
     public override fun onEvent(event: T) {
         super.onEvent(event)
     }

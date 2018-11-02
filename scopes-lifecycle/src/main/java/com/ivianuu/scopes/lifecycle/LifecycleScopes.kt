@@ -26,7 +26,7 @@ interface LifecycleScopes<T> {
     val lifecycle: Lifecycle<T>
 
     /**
-     * Returns a [Scope] which will be closed on [event]
+     * Returns a [Scope] which will be closed when the [event] occurs in the [lifecycle]
      */
     fun scopeFor(event: T): Scope =
         LifecycleScopesHelper.scopeFor(lifecycle, event)

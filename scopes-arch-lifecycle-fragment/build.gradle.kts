@@ -39,7 +39,7 @@ android {
 
 dependencies {
     api(Deps.androidxFragment)
-    api(project(":scopes-archlifecycle"))
+    api(project(":scopes-arch-lifecycle"))
 }
 
 val sourcesJar = task("sourcesJar", Jar::class) {

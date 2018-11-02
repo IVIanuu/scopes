@@ -7,6 +7,8 @@
       <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes/scopes.iml" filepath="$PROJECT_DIR$/scopes/scopes.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-android/scopes-android.iml" filepath="$PROJECT_DIR$/scopes-android/scopes-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-arch-lifecycle/scopes-arch-lifecycle.iml" filepath="$PROJECT_DIR$/scopes-arch-lifecycle/scopes-arch-lifecycle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-arch-lifecycle-fragment/scopes-arch-lifecycle-fragment.iml" filepath="$PROJECT_DIR$/scopes-arch-lifecycle-fragment/scopes-arch-lifecycle-fragment.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-archlifecycle/scopes-archlifecycle.iml" filepath="$PROJECT_DIR$/scopes-archlifecycle/scopes-archlifecycle.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-archlifecycle-fragment/scopes-archlifecycle-fragment.iml" filepath="$PROJECT_DIR$/scopes-archlifecycle-fragment/scopes-archlifecycle-fragment.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-cache/scopes-cache.iml" filepath="$PROJECT_DIR$/scopes-cache/scopes-cache.iml" />
