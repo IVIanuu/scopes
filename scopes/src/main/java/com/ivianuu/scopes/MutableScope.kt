@@ -25,7 +25,7 @@ import kotlin.concurrent.withLock
  */
 class MutableScope : Scope {
 
-    override val closed get() = _closed.get()
+    override val isClosed get() = _closed.get()
     private val _closed = AtomicBoolean(false)
 
     private val lock = ReentrantLock()

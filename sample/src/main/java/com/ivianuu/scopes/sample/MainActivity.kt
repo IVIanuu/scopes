@@ -19,9 +19,12 @@ package com.ivianuu.scopes.sample
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
+import com.ivianuu.scopes.archlifecycle.lifecycleScopes
 import com.ivianuu.scopes.archlifecycle.onCreate
 import com.ivianuu.scopes.archlifecycle.onDestroy
 import com.ivianuu.scopes.archlifecycle.onStop
+import com.ivianuu.scopes.archlivedata.liveData
+import com.ivianuu.scopes.archlivedata.observe
 import com.ivianuu.scopes.coroutines.cancelBy
 import com.ivianuu.scopes.rx.disposeBy
 import io.reactivex.Observable

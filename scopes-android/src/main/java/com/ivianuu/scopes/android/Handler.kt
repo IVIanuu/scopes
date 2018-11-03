@@ -14,17 +14,25 @@
  * limitations under the License.
  */
 
-include(
-    ":sample",
-    ":scopes",
-    ":scopes-android",
-    ":scopes-arch-lifecycle",
-    ":scopes-arch-lifecycle-fragment",
-    ":scopes-arch-livedata",
-    ":scopes-cache",
-    ":scopes-common",
-    ":scopes-coroutines",
-    ":scopes-director",
-    ":scopes-lifecycle",
-    ":scopes-rx"
-)
+package com.ivianuu.scopes.android
+
+import android.os.Handler
+import com.ivianuu.scopes.Scope
+
+fun Handler.post(scope: Scope, runnable: () -> Unit) {
+    scope.addListener { removeCallbacksAndMessages(runnable) }
+    post {
+        if (!scope.isClosed) {
+            runnable()
+        }
+    }
+}
+
+fun Handler.postDelayed(scope: Scope, delay: Long, runnable: () -> Unit) {
+    scope.addListener { removeCallbacksAndMessages(runnable) }
+    postDelayed({
+        if (!scope.isClosed) {
+            runnable()
+        }
+    }, delay)
+}

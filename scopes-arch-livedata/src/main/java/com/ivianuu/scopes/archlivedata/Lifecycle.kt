@@ -14,17 +14,23 @@
  * limitations under the License.
  */
 
-include(
-    ":sample",
-    ":scopes",
-    ":scopes-android",
-    ":scopes-arch-lifecycle",
-    ":scopes-arch-lifecycle-fragment",
-    ":scopes-arch-livedata",
-    ":scopes-cache",
-    ":scopes-common",
-    ":scopes-coroutines",
-    ":scopes-director",
-    ":scopes-lifecycle",
-    ":scopes-rx"
-)
+package com.ivianuu.scopes.archlivedata
+
+import androidx.lifecycle.LiveData
+import com.ivianuu.scopes.lifecycle.Lifecycle
+
+val <T> Lifecycle<T>.liveData get() = object : LiveData<T>() {
+
+    private val listener: (T) -> Unit = { value = it }
+
+    override fun onActive() {
+        super.onActive()
+        addListener(listener)
+    }
+
+    override fun onInactive() {
+        super.onInactive()
+        removeListener(listener)
+    }
+
+}

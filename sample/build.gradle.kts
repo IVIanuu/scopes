@@ -48,6 +48,7 @@ dependencies {
     implementation(project(":scopes-android"))
     implementation(project(":scopes-arch-lifecycle"))
     implementation(project(":scopes-arch-lifecycle-fragment"))
+    implementation(project(":scopes-arch-livedata"))
     implementation(project(":scopes-cache"))
     implementation(project(":scopes-coroutines"))
     implementation(project(":scopes-director"))

@@ -9,8 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/scopes-android/scopes-android.iml" filepath="$PROJECT_DIR$/scopes-android/scopes-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-arch-lifecycle/scopes-arch-lifecycle.iml" filepath="$PROJECT_DIR$/scopes-arch-lifecycle/scopes-arch-lifecycle.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-arch-lifecycle-fragment/scopes-arch-lifecycle-fragment.iml" filepath="$PROJECT_DIR$/scopes-arch-lifecycle-fragment/scopes-arch-lifecycle-fragment.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-archlifecycle/scopes-archlifecycle.iml" filepath="$PROJECT_DIR$/scopes-archlifecycle/scopes-archlifecycle.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-archlifecycle-fragment/scopes-archlifecycle-fragment.iml" filepath="$PROJECT_DIR$/scopes-archlifecycle-fragment/scopes-archlifecycle-fragment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-arch-livedata/scopes-arch-livedata.iml" filepath="$PROJECT_DIR$/scopes-arch-livedata/scopes-arch-livedata.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-cache/scopes-cache.iml" filepath="$PROJECT_DIR$/scopes-cache/scopes-cache.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-common/scopes-common.iml" filepath="$PROJECT_DIR$/scopes-common/scopes-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" filepath="$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" />

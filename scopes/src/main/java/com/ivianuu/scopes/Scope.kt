@@ -23,7 +23,7 @@ interface Scope {
     /**
      * Whether or not this scope is already closed
      */
-    val closed: Boolean
+    val isClosed: Boolean
 
     /**
      * Invokes [listener] when this scope gets closed

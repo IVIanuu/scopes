@@ -14,17 +14,18 @@
  * limitations under the License.
  */
 
-include(
-    ":sample",
-    ":scopes",
-    ":scopes-android",
-    ":scopes-arch-lifecycle",
-    ":scopes-arch-lifecycle-fragment",
-    ":scopes-arch-livedata",
-    ":scopes-cache",
-    ":scopes-common",
-    ":scopes-coroutines",
-    ":scopes-director",
-    ":scopes-lifecycle",
-    ":scopes-rx"
-)
+package com.ivianuu.scopes.archlivedata
+
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
+import com.ivianuu.scopes.Scope
+
+fun <T> LiveData<T>.observe(scope: Scope, observer: Observer<T>) {
+    scope.addListener { removeObserver(observer) }
+    observeForever(observer)
+}
+
+fun <T> LiveData<T>.observe(scope: Scope, observer: (T) -> Unit) {
+    scope.addListener { removeObserver(observer) }
+    observeForever(observer)
+}
