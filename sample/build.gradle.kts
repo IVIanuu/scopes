@@ -51,7 +51,6 @@ dependencies {
     implementation(project(":scopes-arch-livedata"))
     implementation(project(":scopes-cache"))
     implementation(project(":scopes-coroutines"))
-    implementation(project(":scopes-director"))
     implementation(project(":scopes-lifecycle"))
     implementation(project(":scopes-rx"))
 }

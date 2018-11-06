@@ -24,7 +24,6 @@ include(
     ":scopes-cache",
     ":scopes-common",
     ":scopes-coroutines",
-    ":scopes-director",
     ":scopes-lifecycle",
     ":scopes-rx"
 )

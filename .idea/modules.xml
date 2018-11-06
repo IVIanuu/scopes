@@ -13,7 +13,6 @@
       <module fileurl="file://$PROJECT_DIR$/scopes-cache/scopes-cache.iml" filepath="$PROJECT_DIR$/scopes-cache/scopes-cache.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-common/scopes-common.iml" filepath="$PROJECT_DIR$/scopes-common/scopes-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" filepath="$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-director/scopes-director.iml" filepath="$PROJECT_DIR$/scopes-director/scopes-director.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-lifecycle/scopes-lifecycle.iml" filepath="$PROJECT_DIR$/scopes-lifecycle/scopes-lifecycle.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-rx/scopes-rx.iml" filepath="$PROJECT_DIR$/scopes-rx/scopes-rx.iml" />
     </modules>

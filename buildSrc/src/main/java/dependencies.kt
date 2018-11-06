@@ -17,8 +17,6 @@ object Versions {
 
     const val coroutines = "1.0.0"
 
-    const val director = "e65340eb7d"
-
     const val kotlin = "1.3.0"
 
     const val mavenGradlePlugin = "2.1"
@@ -37,9 +35,6 @@ object Deps {
 
     const val coroutinesCore =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
-
-    const val director =
-        "com.github.IVIanuu.director:director:${Versions.director}"
 
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
