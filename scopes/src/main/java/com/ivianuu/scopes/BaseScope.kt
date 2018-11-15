@@ -33,6 +33,8 @@ abstract class BaseScope : Scope {
     private val listeners = mutableListOf<(() -> Unit)>()
 
     override fun addListener(listener: () -> Unit): Unit = lock.withLock {
+        if (listeners.contains(listener)) return@withLock
+
         if (_closed.get()) {
             listener()
             return@withLock

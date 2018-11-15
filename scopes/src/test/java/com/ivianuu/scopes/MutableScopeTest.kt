@@ -58,4 +58,14 @@ class MutableScopeTest {
 
         assertEquals(0, listener.closeCalls)
     }
+
+    @Test
+    fun testAddListenerTwice() {
+        scope.addListener(listener)
+        scope.addListener(listener)
+
+        scope.close()
+
+        assertEquals(1, listener.closeCalls)
+    }
 }

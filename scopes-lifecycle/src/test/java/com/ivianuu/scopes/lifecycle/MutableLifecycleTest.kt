@@ -59,4 +59,14 @@ class MutableLifecycleTest {
         lifecycle.onEvent(TestLifecycle.CREATE)
         assertEquals(emptyList<TestLifecycle>(), listener.history)
     }
+
+    @Test
+    fun testAddListenerTwice() {
+        val listener = TestLifecycleListener<TestLifecycle>()
+        lifecycle.addListener(listener)
+        lifecycle.addListener(listener)
+
+        lifecycle.onEvent(TestLifecycle.CREATE)
+        assertEquals(listOf(TestLifecycle.CREATE), listener.history)
+    }
 }
