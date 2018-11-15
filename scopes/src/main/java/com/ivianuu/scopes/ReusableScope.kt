@@ -24,13 +24,11 @@ import kotlin.concurrent.withLock
  */
 class ReusableScope : Scope {
 
-    /**
-     * This scope is never closed
-     */
     override val isClosed: Boolean
-        get() = false
+        get() = closed
 
     private var internalScope = MutableScope()
+    private var closed = false
 
     private val lock = ReentrantLock()
 
@@ -46,8 +44,19 @@ class ReusableScope : Scope {
      * Clears all current listeners and dispatches the close event to them
      */
     fun clear(): Unit = lock.withLock {
-        internalScope.close()
-        internalScope = MutableScope()
+        if (!closed) {
+            internalScope.close()
+            internalScope = MutableScope()
+        }
     }
 
+    /**
+     * Finally terminates this scope any other call to [clear] or [close] will no op
+     */
+    fun close(): Unit = lock.withLock {
+        if (!closed) {
+            closed = true
+            internalScope.close()
+        }
+    }
 }

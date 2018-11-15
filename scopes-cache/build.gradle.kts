@@ -33,6 +33,8 @@ dependencies {
     api(Deps.kotlinStdLib)
     api(project(":scopes"))
     api(project(":scopes-lifecycle"))
+
+    testImplementation(Deps.junit)
 }
 
 val sourcesJar = task("sourcesJar", Jar::class) {

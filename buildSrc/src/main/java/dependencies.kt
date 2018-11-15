@@ -17,6 +17,8 @@ object Versions {
 
     const val coroutines = "1.0.0"
 
+    const val junit = "4.12"
+
     const val kotlin = "1.3.0"
 
     const val mavenGradlePlugin = "2.1"
@@ -35,6 +37,8 @@ object Deps {
 
     const val coroutinesCore =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
+
+    const val junit = "junit:junit:${Versions.junit}"
 
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"

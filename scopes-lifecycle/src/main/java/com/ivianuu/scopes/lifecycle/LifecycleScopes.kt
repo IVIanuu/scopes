@@ -36,7 +36,6 @@ interface LifecycleScopes<T> {
  * Returns new [LifecycleScopes] which uses the [lifecycle] internally
  */
 fun <T> LifecycleScopes(lifecycle: Lifecycle<T>): LifecycleScopes<T> =
-    object : LifecycleScopes<T> {
-        override val lifecycle: Lifecycle<T>
-            get() = lifecycle
-    }
+    DefaultLifecycleScopes(lifecycle)
+
+class DefaultLifecycleScopes<T>(override val lifecycle: Lifecycle<T>) : LifecycleScopes<T>
