@@ -22,7 +22,7 @@ import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
 /**
- * [LifecycleScopes] which re uses open [Scope]'s
+ * [LifecycleScopes] which re uses open [Scope]s
  */
 class CacheLifecycleScopes<T>(private val wrapped: LifecycleScopes<T>) :
     LifecycleScopes<T> by wrapped {

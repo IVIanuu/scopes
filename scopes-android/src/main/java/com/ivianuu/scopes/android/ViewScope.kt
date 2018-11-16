@@ -32,7 +32,7 @@ val View.scope: Scope
     get() = viewScopes.get(this)
 
 /**
- * A [Scope] for [View]'s
+ * A [Scope] for [View]s
  */
 class ViewScope(private val view: View) : BaseScope() {
 

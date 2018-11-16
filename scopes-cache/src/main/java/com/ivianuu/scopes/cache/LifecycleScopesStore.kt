@@ -21,7 +21,7 @@ import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
 /**
- * A cache for [LifecycleScopes]'s
+ * A cache for [LifecycleScopes]s
  */
 class LifecycleScopesStore<K, E>(
     private val terminationEvent: E,

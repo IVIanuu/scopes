@@ -21,7 +21,7 @@ import androidx.lifecycle.Lifecycle
 import com.ivianuu.scopes.lifecycle.BaseLifecycle
 
 /**
- * A [com.ivianuu.scopes.lifecycle.Lifecycle] for [Lifecycle]'s
+ * A [com.ivianuu.scopes.lifecycle.Lifecycle] for [Lifecycle]s
  */
 class AndroidLifecycle(lifecycle: Lifecycle) : BaseLifecycle<Lifecycle.Event>() {
     init {

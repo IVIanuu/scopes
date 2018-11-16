@@ -33,7 +33,7 @@ val Dialog.scope: Scope
     get() = dialogScopes.get(this)
 
 /**
- * A [Scope] for [Dialog]'s
+ * A [Scope] for [Dialog]s
  */
 class DialogScope(dialog: Dialog) : BaseScope() {
 

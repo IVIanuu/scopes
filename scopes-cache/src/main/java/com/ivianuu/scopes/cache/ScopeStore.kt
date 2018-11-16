@@ -21,7 +21,7 @@ import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
 /**
- * A cache for [Scope]'s
+ * A cache for [Scope]s
  */
 class ScopeStore<K>(private val factory: (K) -> Scope) {
 
