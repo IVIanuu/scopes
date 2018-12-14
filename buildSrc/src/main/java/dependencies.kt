@@ -19,7 +19,7 @@ object Versions {
 
     const val junit = "4.12"
 
-    const val kotlin = "1.3.0"
+    const val kotlin = "1.3.10"
 
     const val mavenGradlePlugin = "2.1"
 
