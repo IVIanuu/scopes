@@ -14,25 +14,23 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.android
+package com.ivianuu.scopes.livedata
 
-import android.os.Handler
+import androidx.lifecycle.LiveData
 import com.ivianuu.scopes.Scope
 
-fun Handler.post(scope: Scope, runnable: () -> Unit) {
-    scope.addListener { removeCallbacksAndMessages(runnable) }
-    post {
-        if (!scope.isClosed) {
-            runnable()
-        }
-    }
-}
+val Scope.liveData get() = object : LiveData<Unit>() {
 
-fun Handler.postDelayed(scope: Scope, delay: Long, runnable: () -> Unit) {
-    scope.addListener { removeCallbacksAndMessages(runnable) }
-    postDelayed({
-        if (!scope.isClosed) {
-            runnable()
-        }
-    }, delay)
+    private val listener = { value = Unit }
+
+    override fun onActive() {
+        super.onActive()
+        addListener(listener)
+    }
+
+    override fun onInactive() {
+        super.onInactive()
+        removeListener(listener)
+    }
+
 }

@@ -14,23 +14,17 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.archlivedata
+package com.ivianuu.scopes.android.lifecycle
 
-import androidx.lifecycle.LiveData
-import com.ivianuu.scopes.Scope
+import androidx.lifecycle.GenericLifecycleObserver
+import androidx.lifecycle.Lifecycle
+import com.ivianuu.scopes.lifecycle.BaseLifecycle
 
-val Scope.liveData get() = object : LiveData<Unit>() {
-
-    private val listener = { value = Unit }
-
-    override fun onActive() {
-        super.onActive()
-        addListener(listener)
+/**
+ * A [com.ivianuu.scopes.lifecycle.Lifecycle] for [Lifecycle]s
+ */
+class AndroidLifecycle(lifecycle: Lifecycle) : BaseLifecycle<Lifecycle.Event>() {
+    init {
+        lifecycle.addObserver(GenericLifecycleObserver { _, event -> onEvent(event) })
     }
-
-    override fun onInactive() {
-        super.onInactive()
-        removeListener(listener)
-    }
-
 }

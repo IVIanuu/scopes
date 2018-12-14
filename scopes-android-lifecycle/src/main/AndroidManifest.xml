@@ -14,4 +14,4 @@
   ~ limitations under the License.
   -->
 
-<manifest package="com.ivianuu.scopes.archlivedata" />
+<manifest package="com.ivianuu.scopes.android.lifecycle" />

@@ -18,12 +18,12 @@ include(
     ":sample",
     ":scopes",
     ":scopes-android",
-    ":scopes-arch-lifecycle",
-    ":scopes-arch-livedata",
+    ":scopes-android-lifecycle",
     ":scopes-fragment",
     ":scopes-cache",
     ":scopes-common",
     ":scopes-coroutines",
     ":scopes-lifecycle",
+    ":scopes-livedata",
     ":scopes-rx"
 )

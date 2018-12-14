@@ -12,13 +12,13 @@
             <option value="$PROJECT_DIR$/sample" />
             <option value="$PROJECT_DIR$/scopes" />
             <option value="$PROJECT_DIR$/scopes-android" />
-            <option value="$PROJECT_DIR$/scopes-arch-lifecycle" />
-            <option value="$PROJECT_DIR$/scopes-arch-livedata" />
+            <option value="$PROJECT_DIR$/scopes-android-lifecycle" />
             <option value="$PROJECT_DIR$/scopes-cache" />
             <option value="$PROJECT_DIR$/scopes-common" />
             <option value="$PROJECT_DIR$/scopes-coroutines" />
             <option value="$PROJECT_DIR$/scopes-fragment" />
             <option value="$PROJECT_DIR$/scopes-lifecycle" />
+            <option value="$PROJECT_DIR$/scopes-livedata" />
             <option value="$PROJECT_DIR$/scopes-rx" />
           </set>
         </option>

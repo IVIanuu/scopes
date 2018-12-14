@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.archlivedata
+package com.ivianuu.scopes.livedata
 
 import androidx.lifecycle.LiveData
 import com.ivianuu.scopes.lifecycle.Lifecycle
