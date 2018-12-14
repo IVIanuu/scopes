@@ -30,4 +30,5 @@ interface Lifecycle<T> {
      * Removes the previously added [listener]
      */
     fun removeListener(listener: (T) -> Unit)
+
 }

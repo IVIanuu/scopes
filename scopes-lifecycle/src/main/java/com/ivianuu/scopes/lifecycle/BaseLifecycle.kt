@@ -29,8 +29,9 @@ abstract class BaseLifecycle<T> : Lifecycle<T> {
     private val listeners = mutableListOf<((T) -> Unit)>()
 
     override fun addListener(listener: (T) -> Unit): Unit = lock.withLock {
-        if (listeners.contains(listener)) return@withLock
-        listeners.add(listener)
+        if (!listeners.contains(listener)) {
+            listeners.add(listener)
+        }
     }
 
     override fun removeListener(listener: (T) -> Unit): Unit = lock.withLock {

@@ -14,17 +14,11 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.archlifecycle.fragment
+package com.ivianuu.scopes.fragment
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import com.ivianuu.scopes.archlifecycle.onCreate
-import com.ivianuu.scopes.archlifecycle.onDestroy
-import com.ivianuu.scopes.archlifecycle.onPause
-import com.ivianuu.scopes.archlifecycle.onResume
-import com.ivianuu.scopes.archlifecycle.onStart
-import com.ivianuu.scopes.archlifecycle.onStop
-import com.ivianuu.scopes.archlifecycle.scopeFor
+import com.ivianuu.scopes.archlifecycle.*
 
 fun Fragment.viewScopeFor(event: Lifecycle.Event) = viewLifecycleOwner.scopeFor(event)
 

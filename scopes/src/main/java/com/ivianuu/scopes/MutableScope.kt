@@ -16,7 +16,6 @@
 
 package com.ivianuu.scopes
 
-import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
@@ -25,20 +24,22 @@ import kotlin.concurrent.withLock
  */
 class MutableScope : Scope {
 
-    override val isClosed get() = _closed.get()
-    private val _closed = AtomicBoolean(false)
+    override val isClosed get() = lock.withLock { _closed }
+    private var _closed = false
 
     private val lock = ReentrantLock()
 
     private val listeners = mutableListOf<(() -> Unit)>()
 
     override fun addListener(listener: () -> Unit): Unit = lock.withLock {
-        if (_closed.get()) {
+        if (_closed) {
             listener()
             return@withLock
         }
 
-        listeners.add(listener)
+        if (!listeners.contains(listener)) {
+            listeners.add(listener)
+        }
     }
 
     override fun removeListener(listener: () -> Unit): Unit = lock.withLock {
@@ -49,7 +50,7 @@ class MutableScope : Scope {
      * Closes the scope
      */
     fun close(): Unit = lock.withLock {
-        if (!_closed.getAndSet(true)) {
+        if (!_closed) {
             listeners.toList().forEach { it() }
             listeners.clear()
         }
