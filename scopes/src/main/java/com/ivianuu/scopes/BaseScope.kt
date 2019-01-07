@@ -25,7 +25,7 @@ import kotlin.concurrent.withLock
  */
 abstract class BaseScope : Scope {
 
-    override val isClosed get() = _closed.get()
+    override val isClosed: Boolean get() = _closed.get()
     private val _closed = AtomicBoolean(false)
 
     private val lock = ReentrantLock()

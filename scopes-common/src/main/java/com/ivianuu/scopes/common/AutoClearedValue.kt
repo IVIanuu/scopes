@@ -44,4 +44,4 @@ class AutoClearedValue<T : Any>(scope: Scope) : ReadWriteProperty<Any, T> {
 /**
  * Returns a [AutoClearedValue] which clears the internal value when the [scope] gets closed
  */
-fun <T : Any> autoCleared(scope: Scope) = AutoClearedValue<T>(scope)
+fun <T : Any> autoCleared(scope: Scope): ReadWriteProperty<Any, T> = AutoClearedValue<T>(scope)

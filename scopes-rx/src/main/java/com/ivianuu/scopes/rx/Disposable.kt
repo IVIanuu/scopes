@@ -42,7 +42,7 @@ private class ScopeDisposable(
         }
     }
 
-    override fun isDisposed() = disposable == DisposableHelper.DISPOSED
+    override fun isDisposed(): Boolean = disposable == DisposableHelper.DISPOSED
 
     override fun dispose() {
         if (!isDisposed) {

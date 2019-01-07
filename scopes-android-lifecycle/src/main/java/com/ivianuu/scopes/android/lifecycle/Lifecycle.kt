@@ -17,6 +17,7 @@
 package com.ivianuu.scopes.android.lifecycle
 
 import androidx.lifecycle.Lifecycle
+import com.ivianuu.scopes.Scope
 import com.ivianuu.scopes.cache.LifecycleScopesStore
 import com.ivianuu.scopes.lifecycle.LifecycleScopes
 
@@ -28,17 +29,17 @@ private val lifecycleScopesStore =
 val Lifecycle.lifecycleScopes: LifecycleScopes<Lifecycle.Event>
     get() = lifecycleScopesStore.get(this)
 
-fun Lifecycle.scopeFor(event: Lifecycle.Event) =
+fun Lifecycle.scopeFor(event: Lifecycle.Event): Scope =
     lifecycleScopes.scopeFor(event)
 
-val Lifecycle.onCreate get() = scopeFor(Lifecycle.Event.ON_CREATE)
+val Lifecycle.onCreate: Scope get() = scopeFor(Lifecycle.Event.ON_CREATE)
 
-val Lifecycle.onStart get() = scopeFor(Lifecycle.Event.ON_START)
+val Lifecycle.onStart: Scope get() = scopeFor(Lifecycle.Event.ON_START)
 
-val Lifecycle.onResume get() = scopeFor(Lifecycle.Event.ON_RESUME)
+val Lifecycle.onResume: Scope get() = scopeFor(Lifecycle.Event.ON_RESUME)
 
-val Lifecycle.onPause get() = scopeFor(Lifecycle.Event.ON_PAUSE)
+val Lifecycle.onPause: Scope get() = scopeFor(Lifecycle.Event.ON_PAUSE)
 
-val Lifecycle.onStop get() = scopeFor(Lifecycle.Event.ON_STOP)
+val Lifecycle.onStop: Scope get() = scopeFor(Lifecycle.Event.ON_STOP)
 
-val Lifecycle.onDestroy get() = scopeFor(Lifecycle.Event.ON_DESTROY)
+val Lifecycle.onDestroy: Scope get() = scopeFor(Lifecycle.Event.ON_DESTROY)
