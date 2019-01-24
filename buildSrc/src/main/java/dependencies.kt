@@ -12,14 +12,15 @@ object Build {
 object Versions {
     const val androidGradlePlugin = "3.3.0"
 
-    const val androidx = "1.0.0"
+    const val androidxAppCompat = "1.0.0"
+    const val androidxFragment = "1.0.0"
     const val androidxLifecycle = "2.0.0"
 
     const val coroutines = "1.0.0"
 
     const val junit = "4.12"
 
-    const val kotlin = "1.3.11"
+    const val kotlin = "1.3.20"
 
     const val mavenGradlePlugin = "2.1"
 
@@ -29,8 +30,8 @@ object Versions {
 object Deps {
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
 
-    const val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.androidx}"
-    const val androidxFragment = "androidx.fragment:fragment:${Versions.androidx}"
+    const val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.androidxAppCompat}"
+    const val androidxFragment = "androidx.fragment:fragment:${Versions.androidxFragment}"
 
     const val archLifecycleExtensions =
         "androidx.lifecycle:lifecycle-extensions:${Versions.androidxLifecycle}"

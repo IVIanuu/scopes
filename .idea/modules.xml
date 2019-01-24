@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Scopes.iml" filepath="$PROJECT_DIR$/Scopes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes/scopes.iml" filepath="$PROJECT_DIR$/scopes/scopes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-android/scopes-android.iml" filepath="$PROJECT_DIR$/scopes-android/scopes-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-android-lifecycle/scopes-android-lifecycle.iml" filepath="$PROJECT_DIR$/scopes-android-lifecycle/scopes-android-lifecycle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-cache/scopes-cache.iml" filepath="$PROJECT_DIR$/scopes-cache/scopes-cache.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-common/scopes-common.iml" filepath="$PROJECT_DIR$/scopes-common/scopes-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" filepath="$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-fragment/scopes-fragment.iml" filepath="$PROJECT_DIR$/scopes-fragment/scopes-fragment.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-lifecycle/scopes-lifecycle.iml" filepath="$PROJECT_DIR$/scopes-lifecycle/scopes-lifecycle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-livedata/scopes-livedata.iml" filepath="$PROJECT_DIR$/scopes-livedata/scopes-livedata.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-rx/scopes-rx.iml" filepath="$PROJECT_DIR$/scopes-rx/scopes-rx.iml" />
+    </modules>
+  </component>
+</project>
