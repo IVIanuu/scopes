@@ -9,12 +9,20 @@ object Build {
     const val versionName = "0.0.1"
 }
 
+object Publishing {
+    const val groupId = "com.ivianuu.scopes"
+    const val vcsUrl = "https://github.com/IVIanuu/scopes"
+    const val version = "git"
+}
+
 object Versions {
     const val androidGradlePlugin = "3.3.0"
 
     const val androidxAppCompat = "1.0.2"
     const val androidxFragment = "1.0.0"
     const val androidxLifecycle = "2.0.0"
+
+    const val bintray = "1.8.4"
 
     const val coroutines = "1.0.0"
 
@@ -35,6 +43,9 @@ object Deps {
 
     const val androidxLifecycleExtensions =
         "androidx.lifecycle:lifecycle-extensions:${Versions.androidxLifecycle}"
+
+    const val bintrayGradlePlugin =
+        "com.jfrog.bintray.gradle:gradle-bintray-plugin:${Versions.bintray}"
 
     const val coroutinesCore =
         "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
