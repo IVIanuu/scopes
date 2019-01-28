@@ -19,7 +19,7 @@ package com.ivianuu.scopes.android
 import android.app.Dialog
 import android.os.Build
 import android.view.View
-import com.ivianuu.scopes.BaseScope
+import com.ivianuu.scopes.AbstractScope
 import com.ivianuu.scopes.OutsideLifecycleException
 import com.ivianuu.scopes.Scope
 import com.ivianuu.scopes.cache.ScopeStore
@@ -35,7 +35,7 @@ val Dialog.scope: Scope
 /**
  * A [Scope] for [Dialog]s
  */
-class DialogScope(dialog: Dialog) : BaseScope() {
+class DialogScope(dialog: Dialog) : AbstractScope() {
 
     init {
         val window = dialog.window ?: throw OutsideLifecycleException("not attached to window")

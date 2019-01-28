@@ -23,7 +23,7 @@ import kotlin.concurrent.withLock
 /**
  * A base scope which handles listeners and the closed state in a thread safe way
  */
-abstract class BaseScope : Scope {
+abstract class AbstractScope : Scope {
 
     override val isClosed: Boolean get() = _closed.get()
     private val _closed = AtomicBoolean(false)

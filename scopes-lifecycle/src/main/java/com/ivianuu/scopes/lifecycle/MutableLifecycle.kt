@@ -19,7 +19,7 @@ package com.ivianuu.scopes.lifecycle
 /**
  * A lifecycle which exposes a [onEvent] function
  */
-class MutableLifecycle<T> : BaseLifecycle<T>() {
+class MutableLifecycle<T> : AbstractLifecycle<T>() {
 
     /**
      * Sends the [event] to all listeners

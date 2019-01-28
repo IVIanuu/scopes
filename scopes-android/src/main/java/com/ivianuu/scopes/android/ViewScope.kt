@@ -18,7 +18,7 @@ package com.ivianuu.scopes.android
 
 import android.os.Build
 import android.view.View
-import com.ivianuu.scopes.BaseScope
+import com.ivianuu.scopes.AbstractScope
 import com.ivianuu.scopes.OutsideLifecycleException
 import com.ivianuu.scopes.Scope
 import com.ivianuu.scopes.cache.ScopeStore
@@ -34,7 +34,7 @@ val View.scope: Scope
 /**
  * A [Scope] for [View]s
  */
-class ViewScope(private val view: View) : BaseScope() {
+class ViewScope(private val view: View) : AbstractScope() {
 
     init {
         val isAttached =

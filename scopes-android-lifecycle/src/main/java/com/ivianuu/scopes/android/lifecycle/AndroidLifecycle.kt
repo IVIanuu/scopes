@@ -18,12 +18,12 @@ package com.ivianuu.scopes.android.lifecycle
 
 import androidx.lifecycle.GenericLifecycleObserver
 import androidx.lifecycle.Lifecycle
-import com.ivianuu.scopes.lifecycle.BaseLifecycle
+import com.ivianuu.scopes.lifecycle.AbstractLifecycle
 
 /**
  * A [com.ivianuu.scopes.android.lifecycle.Lifecycle] for [Lifecycle]s
  */
-class AndroidLifecycle(lifecycle: Lifecycle) : BaseLifecycle<Lifecycle.Event>() {
+class AndroidLifecycle(lifecycle: Lifecycle) : AbstractLifecycle<Lifecycle.Event>() {
     init {
         lifecycle.addObserver(GenericLifecycleObserver { _, event -> onEvent(event) })
     }

@@ -22,7 +22,7 @@ import kotlin.concurrent.withLock
 /**
  * Base lifecycle which handles listeners in a thread safe way
  */
-abstract class BaseLifecycle<T> : Lifecycle<T> {
+abstract class AbstractLifecycle<T> : Lifecycle<T> {
 
     private val lock = ReentrantLock()
 

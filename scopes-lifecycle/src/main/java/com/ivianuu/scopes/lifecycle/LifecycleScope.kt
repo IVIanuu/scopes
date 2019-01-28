@@ -16,12 +16,12 @@
 
 package com.ivianuu.scopes.lifecycle
 
-import com.ivianuu.scopes.BaseScope
+import com.ivianuu.scopes.AbstractScope
 
 internal class LifecycleScope<T>(
     private val lifecycle: Lifecycle<T>,
     private val event: T
-) : BaseScope(), (T) -> Unit {
+) : AbstractScope(), (T) -> Unit {
 
     init {
         lifecycle.addListener(this)
