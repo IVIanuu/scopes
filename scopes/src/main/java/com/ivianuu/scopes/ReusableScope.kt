@@ -32,11 +32,11 @@ class ReusableScope : Scope {
 
     private val lock = ReentrantLock()
 
-    override fun addListener(listener: () -> Unit) {
+    override fun addListener(listener: CloseListener) {
         internalScope.addListener(listener)
     }
 
-    override fun removeListener(listener: () -> Unit) {
+    override fun removeListener(listener: CloseListener) {
         internalScope.removeListener(listener)
     }
 

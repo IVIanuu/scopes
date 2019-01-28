@@ -16,7 +16,7 @@
 
 package com.ivianuu.scopes.lifecycle.util
 
-class TestLifecycleListener<T> : (T) -> Unit {
+class TestLifecycleListener<T> : LifecycleListener<T> {
 
     val history get() = _history.toList()
     private val _history = mutableListOf<T>()

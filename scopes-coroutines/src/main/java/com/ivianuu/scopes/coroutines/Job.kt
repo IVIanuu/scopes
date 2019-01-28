@@ -16,6 +16,7 @@
 
 package com.ivianuu.scopes.coroutines
 
+import com.ivianuu.scopes.CloseListener
 import com.ivianuu.scopes.Scope
 import kotlinx.coroutines.Job
 
@@ -29,7 +30,7 @@ private class ScopeJob(
     private val job: Job
 ) : Job by job {
 
-    private val listener: () -> Unit = { cancel() }
+    private val listener: CloseListener = { cancel() }
 
     init {
         scope.addListener(listener)

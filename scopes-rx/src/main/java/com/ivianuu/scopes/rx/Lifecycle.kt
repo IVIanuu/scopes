@@ -17,6 +17,7 @@
 package com.ivianuu.scopes.rx
 
 import com.ivianuu.scopes.lifecycle.Lifecycle
+import com.ivianuu.scopes.lifecycle.LifecycleListener
 import io.reactivex.Observable
 
 /**
@@ -24,7 +25,7 @@ import io.reactivex.Observable
  */
 val <T> Lifecycle<T>.observable: Observable<T>
     get() = Observable.create { e ->
-        val listener: (T) -> Unit = {
+        val listener: LifecycleListener<T> = {
             if (!e.isDisposed) {
                 e.onNext(it)
             }

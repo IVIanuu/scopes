@@ -21,7 +21,7 @@ import com.ivianuu.scopes.AbstractScope
 internal class LifecycleScope<T>(
     private val lifecycle: Lifecycle<T>,
     private val event: T
-) : AbstractScope(), (T) -> Unit {
+) : AbstractScope(), LifecycleListener<T> {
 
     init {
         lifecycle.addListener(this)

@@ -19,7 +19,7 @@ package com.ivianuu.scopes.util
 /**
  * @author Manuel Wrage (IVIanuu)
  */
-class TestCloseListener : () -> Unit {
+class TestCloseListener : CloseListener {
     var closeCalls = 0
     override fun invoke() {
         closeCalls++

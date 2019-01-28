@@ -30,9 +30,9 @@ abstract class AbstractScope : Scope {
 
     private val lock = ReentrantLock()
 
-    private val listeners = mutableListOf<(() -> Unit)>()
+    private val listeners = mutableListOf<(CloseListener)>()
 
-    override fun addListener(listener: () -> Unit): Unit = lock.withLock {
+    override fun addListener(listener: CloseListener): Unit = lock.withLock {
         if (listeners.contains(listener)) return@withLock
 
         if (_closed.get()) {
@@ -43,7 +43,7 @@ abstract class AbstractScope : Scope {
         listeners.add(listener)
     }
 
-    override fun removeListener(listener: () -> Unit): Unit = lock.withLock {
+    override fun removeListener(listener: CloseListener): Unit = lock.withLock {
         listeners.remove(listener)
     }
 

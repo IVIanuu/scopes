@@ -28,12 +28,12 @@ interface Scope {
     /**
      * Invokes [listener] when this scope gets closed
      */
-    fun addListener(listener: () -> Unit)
+    fun addListener(listener: CloseListener)
 
     /**
      * Removes the [listener] if previously added via [addListener]
      */
-    fun removeListener(listener: () -> Unit)
+    fun removeListener(listener: CloseListener)
 }
 
 typealias CloseListener = () -> Unit

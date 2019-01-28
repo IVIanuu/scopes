@@ -24,11 +24,13 @@ interface Lifecycle<T> {
     /**
      * Notifies the [listener] on lifecycle events
      */
-    fun addListener(listener: (T) -> Unit)
+    fun addListener(listener: LifecycleListener<T>)
 
     /**
      * Removes the previously added [listener]
      */
-    fun removeListener(listener: (T) -> Unit)
+    fun removeListener(listener: LifecycleListener<T>)
 
 }
+
+typealias LifecycleListener<T> = (T) -> Unit

@@ -18,10 +18,11 @@ package com.ivianuu.scopes.livedata
 
 import androidx.lifecycle.LiveData
 import com.ivianuu.scopes.lifecycle.Lifecycle
+import com.ivianuu.scopes.lifecycle.LifecycleListener
 
 val <T> Lifecycle<T>.liveData get() = object : LiveData<T>() {
 
-    private val listener: (T) -> Unit = { value = it }
+    private val listener: LifecycleListener<T> = { value = it }
 
     override fun onActive() {
         super.onActive()
