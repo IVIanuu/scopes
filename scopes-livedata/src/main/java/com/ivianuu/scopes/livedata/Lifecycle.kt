@@ -20,7 +20,7 @@ import androidx.lifecycle.LiveData
 import com.ivianuu.scopes.lifecycle.Lifecycle
 import com.ivianuu.scopes.lifecycle.LifecycleListener
 
-val <T> Lifecycle<T>.liveData get() = object : LiveData<T>() {
+fun <T> Lifecycle<T>.liveData() = object : LiveData<T>() {
 
     private val listener: LifecycleListener<T> = { value = it }
 

@@ -26,12 +26,10 @@ abstract class AbstractLifecycle<T> : Lifecycle<T> {
 
     private val lock = ReentrantLock()
 
-    private val listeners = mutableListOf<LifecycleListener<T>>()
+    private val listeners = mutableSetOf<LifecycleListener<T>>()
 
     override fun addListener(listener: LifecycleListener<T>): Unit = lock.withLock {
-        if (!listeners.contains(listener)) {
-            listeners.add(listener)
-        }
+        listeners.add(listener)
     }
 
     override fun removeListener(listener: LifecycleListener<T>): Unit = lock.withLock {

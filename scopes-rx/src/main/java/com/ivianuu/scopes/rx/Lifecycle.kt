@@ -23,8 +23,7 @@ import io.reactivex.Observable
 /**
  * Emits events of [this]
  */
-val <T> Lifecycle<T>.observable: Observable<T>
-    get() = Observable.create { e ->
+fun <T> Lifecycle<T>.observable(): Observable<T> = Observable.create { e ->
         val listener: LifecycleListener<T> = {
             if (!e.isDisposed) {
                 e.onNext(it)

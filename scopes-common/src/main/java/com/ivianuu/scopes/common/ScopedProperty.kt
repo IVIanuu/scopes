@@ -23,7 +23,7 @@ import kotlin.reflect.KProperty
 /**
  * A property that gets cleaned up when a scope gets closed.
  * */
-class AutoClearedValue<T>(scope: Scope) : ReadWriteProperty<Any, T> {
+class ScopedProperty<T>(scope: Scope) : ReadWriteProperty<Any, T> {
 
     private var value: T? = null
 
@@ -42,6 +42,6 @@ class AutoClearedValue<T>(scope: Scope) : ReadWriteProperty<Any, T> {
 }
 
 /**
- * Returns a [AutoClearedValue] which clears the internal value when the [scope] gets closed
+ * Returns a [ScopedProperty] which clears the internal value when the [scope] gets closed
  */
-fun <T : Any> autoCleared(scope: Scope): ReadWriteProperty<Any, T> = AutoClearedValue(scope)
+fun <T : Any> scoped(scope: Scope): ReadWriteProperty<Any, T> = ScopedProperty(scope)

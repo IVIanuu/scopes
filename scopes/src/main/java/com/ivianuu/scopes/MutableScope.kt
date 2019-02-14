@@ -29,7 +29,7 @@ class MutableScope : Scope {
 
     private val lock = ReentrantLock()
 
-    private val listeners = mutableListOf<CloseListener>()
+    private val listeners = mutableSetOf<CloseListener>()
 
     override fun addListener(listener: CloseListener): Unit = lock.withLock {
         if (_closed) {
@@ -37,9 +37,7 @@ class MutableScope : Scope {
             return@withLock
         }
 
-        if (!listeners.contains(listener)) {
-            listeners.add(listener)
-        }
+        listeners.add(listener)
     }
 
     override fun removeListener(listener: CloseListener): Unit = lock.withLock {

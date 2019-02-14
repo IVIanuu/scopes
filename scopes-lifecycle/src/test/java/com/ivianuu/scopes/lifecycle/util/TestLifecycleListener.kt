@@ -16,6 +16,8 @@
 
 package com.ivianuu.scopes.lifecycle.util
 
+import com.ivianuu.scopes.lifecycle.LifecycleListener
+
 class TestLifecycleListener<T> : LifecycleListener<T> {
 
     val history get() = _history.toList()
