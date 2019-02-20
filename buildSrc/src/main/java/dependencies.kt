@@ -12,7 +12,7 @@ object Build {
 object Publishing {
     const val groupId = "com.ivianuu.scopes"
     const val vcsUrl = "https://github.com/IVIanuu/scopes"
-    const val version = "${Build.versionName}-dev-2"
+    const val version = "${Build.versionName}-dev-3"
 }
 
 object Versions {
@@ -29,6 +29,8 @@ object Versions {
     const val junit = "4.12"
 
     const val kotlin = "1.3.21"
+
+    const val lifecycle = "0.0.1-dev-1"
 
     const val mavenGradlePlugin = "2.1"
 
@@ -54,6 +56,10 @@ object Deps {
 
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
+
+    const val lifecycle = "com.ivianuu.lifecycle:lifecycle:${Versions.lifecycle}"
+    const val lifecycleAndroidLifecycle =
+        "com.ivianuu.lifecycle:lifecycle-android-lifecycle:${Versions.lifecycle}"
 
     const val mavenGradlePlugin =
         "com.github.dcendents:android-maven-gradle-plugin:${Versions.mavenGradlePlugin}"

@@ -24,6 +24,7 @@ apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/mv
 
 dependencies {
     api(Deps.androidxLifecycleExtensions)
+    api(Deps.lifecycleAndroidLifecycle)
     api(project(":scopes"))
     api(project(":scopes-cache"))
     api(project(":scopes-lifecycle"))

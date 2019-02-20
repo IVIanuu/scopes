@@ -18,7 +18,6 @@ package com.ivianuu.scopes.cache
 
 import com.ivianuu.scopes.cache.util.TestLifecycle
 import com.ivianuu.scopes.lifecycle.LifecycleScopes
-import com.ivianuu.scopes.lifecycle.MutableLifecycle
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Test

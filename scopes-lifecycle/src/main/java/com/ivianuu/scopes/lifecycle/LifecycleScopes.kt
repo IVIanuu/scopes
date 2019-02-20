@@ -16,6 +16,7 @@
 
 package com.ivianuu.scopes.lifecycle
 
+import com.ivianuu.lifecycle.Lifecycle
 import com.ivianuu.scopes.Scope
 
 /**

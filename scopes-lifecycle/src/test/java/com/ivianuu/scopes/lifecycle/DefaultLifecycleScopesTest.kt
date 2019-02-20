@@ -16,7 +16,12 @@
 
 package com.ivianuu.scopes.lifecycle
 
+import com.ivianuu.lifecycle.MutableLifecycle
 import com.ivianuu.scopes.lifecycle.util.TestLifecycle
+import com.ivianuu.scopes.lifecycle.util.TestLifecycle.CREATE
+import com.ivianuu.scopes.lifecycle.util.TestLifecycle.DESTROY
+import com.ivianuu.scopes.lifecycle.util.TestLifecycle.HIDE
+import com.ivianuu.scopes.lifecycle.util.TestLifecycle.SHOW
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -28,30 +33,30 @@ class DefaultLifecycleScopesTest {
 
     @Test
     fun testScopeFor() {
-        val createScope = lifecycleScopes.scopeFor(TestLifecycle.CREATE)
-        val showScope = lifecycleScopes.scopeFor(TestLifecycle.SHOW)
-        val hideScope = lifecycleScopes.scopeFor(TestLifecycle.HIDE)
-        val destroyScope = lifecycleScopes.scopeFor(TestLifecycle.DESTROY)
+        val createScope = lifecycleScopes.scopeFor(CREATE)
+        val showScope = lifecycleScopes.scopeFor(SHOW)
+        val hideScope = lifecycleScopes.scopeFor(HIDE)
+        val destroyScope = lifecycleScopes.scopeFor(DESTROY)
 
-        lifecycle.onEvent(TestLifecycle.CREATE)
+        lifecycle.onEvent(CREATE)
         assertTrue(createScope.isClosed)
         assertFalse(showScope.isClosed)
         assertFalse(hideScope.isClosed)
         assertFalse(destroyScope.isClosed)
 
-        lifecycle.onEvent(TestLifecycle.SHOW)
+        lifecycle.onEvent(SHOW)
         assertTrue(createScope.isClosed)
         assertTrue(showScope.isClosed)
         assertFalse(hideScope.isClosed)
         assertFalse(destroyScope.isClosed)
 
-        lifecycle.onEvent(TestLifecycle.HIDE)
+        lifecycle.onEvent(HIDE)
         assertTrue(createScope.isClosed)
         assertTrue(showScope.isClosed)
         assertTrue(hideScope.isClosed)
         assertFalse(destroyScope.isClosed)
 
-        lifecycle.onEvent(TestLifecycle.DESTROY)
+        lifecycle.onEvent(DESTROY)
         assertTrue(createScope.isClosed)
         assertTrue(showScope.isClosed)
         assertTrue(hideScope.isClosed)

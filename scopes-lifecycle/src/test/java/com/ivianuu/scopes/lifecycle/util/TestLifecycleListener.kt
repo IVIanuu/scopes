@@ -16,7 +16,7 @@
 
 package com.ivianuu.scopes.lifecycle.util
 
-import com.ivianuu.scopes.lifecycle.LifecycleListener
+import com.ivianuu.lifecycle.LifecycleListener
 
 class TestLifecycleListener<T> : LifecycleListener<T> {
 

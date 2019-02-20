@@ -19,7 +19,13 @@ package com.ivianuu.scopes.fragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import com.ivianuu.scopes.Scope
-import com.ivianuu.scopes.android.lifecycle.*
+import com.ivianuu.scopes.android.lifecycle.onCreate
+import com.ivianuu.scopes.android.lifecycle.onDestroy
+import com.ivianuu.scopes.android.lifecycle.onPause
+import com.ivianuu.scopes.android.lifecycle.onResume
+import com.ivianuu.scopes.android.lifecycle.onStart
+import com.ivianuu.scopes.android.lifecycle.onStop
+import com.ivianuu.scopes.android.lifecycle.scopeFor
 
 fun Fragment.viewScopeFor(event: Lifecycle.Event): Scope = viewLifecycleOwner.scopeFor(event)
 

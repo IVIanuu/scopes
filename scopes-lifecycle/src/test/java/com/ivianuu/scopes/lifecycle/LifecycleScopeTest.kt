@@ -16,7 +16,12 @@
 
 package com.ivianuu.scopes.lifecycle
 
+import com.ivianuu.lifecycle.MutableLifecycle
 import com.ivianuu.scopes.lifecycle.util.TestLifecycle
+import com.ivianuu.scopes.lifecycle.util.TestLifecycle.CREATE
+import com.ivianuu.scopes.lifecycle.util.TestLifecycle.DESTROY
+import com.ivianuu.scopes.lifecycle.util.TestLifecycle.HIDE
+import com.ivianuu.scopes.lifecycle.util.TestLifecycle.SHOW
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
@@ -27,19 +32,19 @@ class LifecycleScopeTest {
 
     @Test
     fun testLifecycleScopeClosing() {
-        val scope = LifecycleScope(lifecycle, TestLifecycle.DESTROY)
+        val scope = LifecycleScope(lifecycle, DESTROY)
         assertFalse(scope.isClosed)
 
-        lifecycle.onEvent(TestLifecycle.CREATE)
+        lifecycle.onEvent(CREATE)
         assertFalse(scope.isClosed)
 
-        lifecycle.onEvent(TestLifecycle.SHOW)
+        lifecycle.onEvent(SHOW)
         assertFalse(scope.isClosed)
 
-        lifecycle.onEvent(TestLifecycle.HIDE)
+        lifecycle.onEvent(HIDE)
         assertFalse(scope.isClosed)
 
-        lifecycle.onEvent(TestLifecycle.DESTROY)
+        lifecycle.onEvent(DESTROY)
         assertTrue(scope.isClosed)
     }
 }
