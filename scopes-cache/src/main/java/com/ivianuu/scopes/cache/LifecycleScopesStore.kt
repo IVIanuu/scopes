@@ -31,6 +31,9 @@ class LifecycleScopesStore<K, E>(
     private val lifecycleScopes = mutableMapOf<K, LifecycleScopes<E>>()
     private val lock = ReentrantLock()
 
+    /**
+     * Returns [lifecycleScopes] for the given [key]
+     */
     fun get(key: K): LifecycleScopes<E> = lock.withLock {
         lifecycleScopes.getOrPut(key) {
             CacheLifecycleScopes(factory(key))

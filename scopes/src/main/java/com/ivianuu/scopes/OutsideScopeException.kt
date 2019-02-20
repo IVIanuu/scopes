@@ -14,17 +14,11 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.lifecycle
-
-import com.ivianuu.scopes.Scope
+package com.ivianuu.scopes
 
 /**
- * Lifecycle scopes helper
+ * Will be called when the scoped was already closed or not started yet
  */
-object LifecycleScopesHelper {
-
-    /**
-     * Returns a [Scope] which will be closed when the [event] occurs in the [lifecycle]
-     */
-    fun <T> scopeFor(lifecycle: Lifecycle<T>, event: T): Scope = LifecycleScope(lifecycle, event)
-}
+open class OutsideScopeException(
+    message: String = "Outside of the scope"
+) : IllegalStateException(message)

@@ -18,7 +18,10 @@ package com.ivianuu.scopes.lifecycle
 
 import com.ivianuu.scopes.AbstractScope
 
-internal class LifecycleScope<T>(
+/**
+ * A scope which closes once the [event] has happened in the [lifecycle]
+ */
+class LifecycleScope<T>(
     private val lifecycle: Lifecycle<T>,
     private val event: T
 ) : AbstractScope(), LifecycleListener<T> {

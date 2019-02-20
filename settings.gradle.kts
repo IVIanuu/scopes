@@ -24,6 +24,5 @@ include(
     ":scopes-common",
     ":scopes-coroutines",
     ":scopes-lifecycle",
-    ":scopes-livedata",
     ":scopes-rx"
 )

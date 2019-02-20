@@ -21,37 +21,38 @@ import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
 /**
- * A base scope which handles listeners and the closed state in a thread safe way
+ * A base scope which handles listeners and the closed state and all listeners in a thread safe way
  */
 abstract class AbstractScope : Scope {
 
     override val isClosed: Boolean get() = _closed.get()
     private val _closed = AtomicBoolean(false)
 
-    private val lock = ReentrantLock()
-
     private val listeners = mutableSetOf<CloseListener>()
+    private val listenersLock = ReentrantLock()
 
-    override fun addListener(listener: CloseListener): Unit = lock.withLock {
+    override fun addListener(listener: CloseListener) {
         if (_closed.get()) {
             listener()
-            return@withLock
+            return
         }
 
-        listeners.add(listener)
+        listenersLock.withLock { listeners.add(listener) }
     }
 
-    override fun removeListener(listener: CloseListener): Unit = lock.withLock {
+    override fun removeListener(listener: CloseListener): Unit = listenersLock.withLock {
         listeners.remove(listener)
     }
 
     /**
-     * Closes the scope
+     * Closes this scope
      */
-    protected open fun close(): Unit = lock.withLock {
+    protected open fun close(): Unit = listenersLock.withLock {
         if (!_closed.getAndSet(true)) {
-            listeners.toList().forEach { it() }
-            listeners.clear()
+            listenersLock.withLock {
+                listeners.toList().forEach { it() }
+                listeners.clear()
+            }
         }
     }
 }

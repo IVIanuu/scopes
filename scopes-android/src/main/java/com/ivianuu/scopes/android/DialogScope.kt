@@ -20,7 +20,7 @@ import android.app.Dialog
 import android.os.Build
 import android.view.View
 import com.ivianuu.scopes.AbstractScope
-import com.ivianuu.scopes.OutsideLifecycleException
+import com.ivianuu.scopes.OutsideScopeException
 import com.ivianuu.scopes.Scope
 import com.ivianuu.scopes.cache.ScopeStore
 
@@ -38,14 +38,14 @@ val Dialog.scope: Scope
 class DialogScope(dialog: Dialog) : AbstractScope() {
 
     init {
-        val window = dialog.window ?: throw OutsideLifecycleException("not attached to window")
+        val window = dialog.window ?: throw OutsideScopeException("not attached to window")
 
         val isAttached =
             (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && window.decorView.isAttachedToWindow)
                     || window.decorView.windowToken != null
 
         if (!isAttached) {
-            throw OutsideLifecycleException("not attached to window")
+            throw OutsideScopeException("not attached to window")
         }
 
         val listener = object : View.OnAttachStateChangeListener {

@@ -23,13 +23,15 @@ import com.ivianuu.scopes.Scope
  */
 interface LifecycleScopes<T> {
 
+    /**
+     * The lifecycle of this component
+     */
     val lifecycle: Lifecycle<T>
 
     /**
      * Returns a [Scope] which will be closed when the [event] occurs in the [lifecycle]
      */
-    fun scopeFor(event: T): Scope =
-        LifecycleScopesHelper.scopeFor(lifecycle, event)
+    fun scopeFor(event: T): Scope = LifecycleScope(lifecycle, event)
 }
 
 /**

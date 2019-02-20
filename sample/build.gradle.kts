@@ -30,6 +30,5 @@ dependencies {
     implementation(project(":scopes-cache"))
     implementation(project(":scopes-coroutines"))
     implementation(project(":scopes-lifecycle"))
-    implementation(project(":scopes-livedata"))
     implementation(project(":scopes-rx"))
 }

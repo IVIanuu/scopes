@@ -24,9 +24,8 @@ import kotlin.concurrent.withLock
  */
 abstract class AbstractLifecycle<T> : Lifecycle<T> {
 
-    private val lock = ReentrantLock()
-
     private val listeners = mutableSetOf<LifecycleListener<T>>()
+    private val lock = ReentrantLock()
 
     override fun addListener(listener: LifecycleListener<T>): Unit = lock.withLock {
         listeners.add(listener)

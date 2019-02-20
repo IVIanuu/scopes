@@ -16,6 +16,7 @@
 
 package com.ivianuu.scopes
 
+import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
@@ -24,13 +25,12 @@ import kotlin.concurrent.withLock
  */
 class ReusableScope : Scope {
 
-    override val isClosed: Boolean
-        get() = closed
+    override val isClosed: Boolean get() = _closed.get()
+    private val _closed = AtomicBoolean(false)
 
     private var internalScope = MutableScope()
-    private var closed = false
 
-    private val lock = ReentrantLock()
+    private val internalScopeLock = ReentrantLock()
 
     override fun addListener(listener: CloseListener) {
         internalScope.addListener(listener)
@@ -42,20 +42,20 @@ class ReusableScope : Scope {
 
     /**
      * Clears all current listeners and dispatches the close event to them
+     * This scope is still intact after that
      */
-    fun clear(): Unit = lock.withLock {
-        if (!closed) {
+    fun clear(): Unit = internalScopeLock.withLock {
+        if (!_closed.get()) {
             internalScope.close()
-            internalScope = MutableScope()
+            internalScopeLock.withLock { internalScope = MutableScope() }
         }
     }
 
     /**
      * Finally terminates this scope any other call to [clear] or [close] will no op
      */
-    fun close(): Unit = lock.withLock {
-        if (!closed) {
-            closed = true
+    fun close(): Unit = internalScopeLock.withLock {
+        if (!_closed.getAndSet(true)) {
             internalScope.close()
         }
     }

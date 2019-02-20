@@ -16,41 +16,16 @@
 
 package com.ivianuu.scopes
 
-import java.util.concurrent.locks.ReentrantLock
-import kotlin.concurrent.withLock
-
 /**
  * A simple scope which exposes a [close] function to close it.
  */
-class MutableScope : Scope {
-
-    override val isClosed get() = lock.withLock { _closed }
-    private var _closed = false
-
-    private val lock = ReentrantLock()
-
-    private val listeners = mutableSetOf<CloseListener>()
-
-    override fun addListener(listener: CloseListener): Unit = lock.withLock {
-        if (_closed) {
-            listener()
-            return@withLock
-        }
-
-        listeners.add(listener)
-    }
-
-    override fun removeListener(listener: CloseListener): Unit = lock.withLock {
-        listeners.remove(listener)
-    }
+class MutableScope : AbstractScope() {
 
     /**
-     * Closes the scope
+     * Closes this scope
      */
-    fun close(): Unit = lock.withLock {
-        if (!_closed) {
-            listeners.toList().forEach { it() }
-            listeners.clear()
-        }
+    public override fun close() {
+        super.close()
     }
+
 }

@@ -19,7 +19,7 @@ package com.ivianuu.scopes.android
 import android.os.Build
 import android.view.View
 import com.ivianuu.scopes.AbstractScope
-import com.ivianuu.scopes.OutsideLifecycleException
+import com.ivianuu.scopes.OutsideScopeException
 import com.ivianuu.scopes.Scope
 import com.ivianuu.scopes.cache.ScopeStore
 
@@ -42,7 +42,7 @@ class ViewScope(private val view: View) : AbstractScope() {
                     || view.windowToken != null
 
         if (!isAttached) {
-            throw OutsideLifecycleException("view not attached")
+            throw OutsideScopeException("view not attached")
         }
 
         val listener = object : View.OnAttachStateChangeListener {

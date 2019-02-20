@@ -18,7 +18,6 @@
             <option value="$PROJECT_DIR$/scopes-coroutines" />
             <option value="$PROJECT_DIR$/scopes-fragment" />
             <option value="$PROJECT_DIR$/scopes-lifecycle" />
-            <option value="$PROJECT_DIR$/scopes-livedata" />
             <option value="$PROJECT_DIR$/scopes-rx" />
           </set>
         </option>

@@ -16,10 +16,10 @@
 
 package com.ivianuu.scopes.lifecycle
 
-import com.ivianuu.scopes.OutsideLifecycleException
+import com.ivianuu.scopes.OutsideScopeException
 
 /**
- * Signifies an error occurred due to execution starting after the lifecycle has ended.
+ * Signals that the lifecycle has ended
  */
 class LifecycleEndedException(message: String = "Lifecycle has ended") :
-    OutsideLifecycleException(message)
+    OutsideScopeException(message)

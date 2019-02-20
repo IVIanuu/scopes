@@ -28,6 +28,9 @@ class ScopeStore<K>(private val factory: (K) -> Scope) {
     private val scopes = mutableMapOf<K, Scope>()
     private val lock = ReentrantLock()
 
+    /**
+     * Returns the [Scope] for the given [key]
+     */
     fun get(key: K): Scope = lock.withLock {
         scopes.getOrPut(key) {
             factory(key).also { trackClose(it, key) }

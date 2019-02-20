@@ -21,7 +21,7 @@ import com.ivianuu.scopes.Scope
 import kotlinx.coroutines.Job
 
 /**
- * Invokes [Job.cancel] when the [scope] gets closed
+ * Cancels this job when the [scope] gets closed
  */
 fun Job.cancelBy(scope: Scope): Job = ScopeJob(scope, this)
 
