@@ -22,15 +22,22 @@ import android.view.View
 import com.ivianuu.scopes.AbstractScope
 import com.ivianuu.scopes.OutsideScopeException
 import com.ivianuu.scopes.Scope
-import com.ivianuu.scopes.common.ScopeCache
+import com.ivianuu.scopes.ScopeOwner
+import com.ivianuu.scopes.common.ScopeOwnerCache
 
-private val dialogScopes = ScopeCache<Dialog> { DialogScope(it) }
+private val dialogScopeOwners = ScopeOwnerCache<Dialog> { ScopeOwner(DialogScope(it)) }
 
 /**
- * A [Scope] which will be re used on this instance
+ * Returns the [ScopeOwner] for this [Dialog]
+ */
+val Dialog.scopeOwner: ScopeOwner
+    get() = dialogScopeOwners.get(this)
+
+/**
+ * Returns the [Scope] of this dialog
  */
 val Dialog.scope: Scope
-    get() = dialogScopes.get(this)
+    get() = scopeOwner.scope
 
 /**
  * A [Scope] for [Dialog]s
