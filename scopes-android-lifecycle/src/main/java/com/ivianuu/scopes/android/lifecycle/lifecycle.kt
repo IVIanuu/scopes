@@ -25,11 +25,11 @@ import androidx.lifecycle.Lifecycle.Event.ON_START
 import androidx.lifecycle.Lifecycle.Event.ON_STOP
 import com.ivianuu.lifecycle.android.lifecycle.AndroidLifecycle
 import com.ivianuu.scopes.Scope
-import com.ivianuu.scopes.cache.LifecycleScopesStore
+import com.ivianuu.scopes.common.LifecycleScopesCache
 import com.ivianuu.scopes.lifecycle.LifecycleScopes
 
 private val lifecycleScopesStore =
-    LifecycleScopesStore<Lifecycle, Lifecycle.Event>(ON_DESTROY) {
+    LifecycleScopesCache<Lifecycle, Lifecycle.Event>(ON_DESTROY) {
         LifecycleScopes(AndroidLifecycle(it))
     }
 

@@ -14,27 +14,27 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.cache
+package com.ivianuu.scopes.common
 
-import com.ivianuu.scopes.cache.util.TestLifecycle
-import com.ivianuu.scopes.lifecycle.LifecycleScopes
+import com.ivianuu.scopes.MutableScope
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Test
 
-class CacheLifecycleScopesTest {
+/**
+ * @author Manuel Wrage (IVIanuu)
+ */
+class ScopeCacheTest {
 
-    private val lifecycle = MutableLifecycle<TestLifecycle>()
-    private val lifecycleScopes = LifecycleScopes(lifecycle)
-    private val cacheLifecycleScopes = CacheLifecycleScopes(lifecycleScopes)
+    private val scopeCache = ScopeCache<String> { MutableScope() }
 
     @Test
-    fun testReusesScopes() {
-        val scope1 = cacheLifecycleScopes.scopeFor(TestLifecycle.CREATE)
-        val scope2 = cacheLifecycleScopes.scopeFor(TestLifecycle.CREATE)
+    fun testReusesScopeWhileOpen() {
+        val scope1 = scopeCache.get("key")
+        val scope2 = scopeCache.get("key")
         assertEquals(scope1, scope2)
-        lifecycle.onEvent(TestLifecycle.CREATE)
-        val scope3 = cacheLifecycleScopes.scopeFor(TestLifecycle.CREATE)
+        (scope1 as MutableScope).close()
+        val scope3 = scopeCache.get("key")
         assertNotEquals(scope1, scope3)
     }
 }

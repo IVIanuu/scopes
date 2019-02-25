@@ -22,9 +22,9 @@ import android.view.View
 import com.ivianuu.scopes.AbstractScope
 import com.ivianuu.scopes.OutsideScopeException
 import com.ivianuu.scopes.Scope
-import com.ivianuu.scopes.cache.ScopeStore
+import com.ivianuu.scopes.common.ScopeCache
 
-private val dialogScopes = ScopeStore<Dialog> { DialogScope(it) }
+private val dialogScopes = ScopeCache<Dialog> { DialogScope(it) }
 
 /**
  * A [Scope] which will be re used on this instance

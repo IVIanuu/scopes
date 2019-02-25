@@ -26,6 +26,6 @@ dependencies {
     api(Deps.androidxLifecycleExtensions)
     api(Deps.lifecycleAndroidLifecycle)
     api(project(":scopes"))
-    api(project(":scopes-cache"))
+    api(project(":scopes-common"))
     api(project(":scopes-lifecycle"))
 }

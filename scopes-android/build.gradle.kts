@@ -28,5 +28,5 @@ apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/mv
 
 dependencies {
     api(project(":scopes"))
-    api(project(":scopes-cache"))
+    api(project(":scopes-common"))
 }

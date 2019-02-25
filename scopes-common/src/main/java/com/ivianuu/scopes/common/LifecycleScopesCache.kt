@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.cache
+package com.ivianuu.scopes.common
 
 import com.ivianuu.scopes.lifecycle.LifecycleScopes
 import java.util.concurrent.locks.ReentrantLock
@@ -23,7 +23,7 @@ import kotlin.concurrent.withLock
 /**
  * A cache for [LifecycleScopes]s
  */
-class LifecycleScopesStore<K, E>(
+class LifecycleScopesCache<K, E>(
     private val terminationEvent: E,
     private val factory: (K) -> LifecycleScopes<E>
 ) {
@@ -36,7 +36,7 @@ class LifecycleScopesStore<K, E>(
      */
     fun get(key: K): LifecycleScopes<E> = lock.withLock {
         lifecycleScopes.getOrPut(key) {
-            CacheLifecycleScopes(factory(key))
+            CachingLifecycleScopes(factory(key))
                 .also { trackTermination(it, key) }
         }
     }

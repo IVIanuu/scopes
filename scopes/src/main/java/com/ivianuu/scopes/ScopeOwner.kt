@@ -25,3 +25,10 @@ interface ScopeOwner {
      */
     val scope: Scope
 }
+
+/**
+ * Returns a [ScopeOwner] for [scope]
+ */
+fun ScopeOwner(scope: Scope): ScopeOwner = DefaultScopeOwner(scope)
+
+class DefaultScopeOwner(override val scope: Scope) : ScopeOwner

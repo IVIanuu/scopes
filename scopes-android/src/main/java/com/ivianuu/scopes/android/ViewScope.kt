@@ -21,9 +21,9 @@ import android.view.View
 import com.ivianuu.scopes.AbstractScope
 import com.ivianuu.scopes.OutsideScopeException
 import com.ivianuu.scopes.Scope
-import com.ivianuu.scopes.cache.ScopeStore
+import com.ivianuu.scopes.common.ScopeCache
 
-private val viewScopes = ScopeStore<View> { ViewScope(it) }
+private val viewScopes = ScopeCache<View> { ViewScope(it) }
 
 /**
  * A [Scope] which will be re used on this instance

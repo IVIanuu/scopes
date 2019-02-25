@@ -1,5 +1,3 @@
-import java.io.File
-
 /*
  * Copyright 2018 Manuel Wrage
  *
@@ -16,18 +14,11 @@ import java.io.File
  * limitations under the License.
  */
 
-plugins {
-    id("java-library")
-    id("kotlin")
-}
+package com.ivianuu.scopes.common.util
 
-apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/java-compatibility-android.gradle")
-apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/mvn-publish.gradle")
-
-dependencies {
-    api(Deps.kotlinStdLib)
-    api(project(":scopes"))
-    api(project(":scopes-lifecycle"))
-
-    testImplementation(Deps.junit)
+enum class TestLifecycle {
+    CREATE,
+    SHOW,
+    HIDE,
+    DESTROY
 }

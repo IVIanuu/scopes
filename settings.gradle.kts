@@ -20,7 +20,6 @@ include(
     ":scopes-android",
     ":scopes-android-lifecycle",
     ":scopes-fragment",
-    ":scopes-cache",
     ":scopes-common",
     ":scopes-coroutines",
     ":scopes-lifecycle",

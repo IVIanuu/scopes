@@ -8,7 +8,6 @@
       <module fileurl="file://$PROJECT_DIR$/scopes/scopes.iml" filepath="$PROJECT_DIR$/scopes/scopes.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-android/scopes-android.iml" filepath="$PROJECT_DIR$/scopes-android/scopes-android.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-android-lifecycle/scopes-android-lifecycle.iml" filepath="$PROJECT_DIR$/scopes-android-lifecycle/scopes-android-lifecycle.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-cache/scopes-cache.iml" filepath="$PROJECT_DIR$/scopes-cache/scopes-cache.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-common/scopes-common.iml" filepath="$PROJECT_DIR$/scopes-common/scopes-common.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" filepath="$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" />
       <module fileurl="file://$PROJECT_DIR$/scopes-fragment/scopes-fragment.iml" filepath="$PROJECT_DIR$/scopes-fragment/scopes-fragment.iml" />

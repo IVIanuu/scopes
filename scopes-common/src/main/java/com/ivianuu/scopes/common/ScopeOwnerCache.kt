@@ -14,32 +14,32 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.cache
+package com.ivianuu.scopes.common
 
-import com.ivianuu.scopes.Scope
+import com.ivianuu.scopes.ScopeOwner
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
 /**
- * A cache for [Scope]s
+ * A cache for [ScopeOwner]s
  */
-class ScopeStore<K>(private val factory: (K) -> Scope) {
+class ScopeOwnerCache<K>(private val factory: (K) -> ScopeOwner) {
 
-    private val scopes = mutableMapOf<K, Scope>()
+    private val scopeOwners = mutableMapOf<K, ScopeOwner>()
     private val lock = ReentrantLock()
 
     /**
-     * Returns the [Scope] for the given [key]
+     * Returns the [ScopeOwner] for the given [key]
      */
-    fun get(key: K): Scope = lock.withLock {
-        scopes.getOrPut(key) {
+    fun get(key: K): ScopeOwner = lock.withLock {
+        scopeOwners.getOrPut(key) {
             factory(key).also { trackClose(it, key) }
         }
     }
 
-    private fun trackClose(scope: Scope, key: K) {
-        scope.addListener {
-            lock.withLock { scopes.remove(key) }
+    private fun trackClose(scopeOwner: ScopeOwner, key: K) {
+        scopeOwner.scope.addListener {
+            lock.withLock { scopeOwners.remove(key) }
         }
     }
 }

@@ -33,6 +33,7 @@ interface LifecycleScopes<T> {
      * Returns a [Scope] which will be closed when the [event] occurs in the [lifecycle]
      */
     fun scopeFor(event: T): Scope = LifecycleScope(lifecycle, event)
+
 }
 
 /**

@@ -14,30 +14,28 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.cache
+package com.ivianuu.scopes.common
 
-import com.ivianuu.scopes.cache.util.TestLifecycle
+import com.ivianuu.lifecycle.MutableLifecycle
+import com.ivianuu.scopes.common.util.TestLifecycle
 import com.ivianuu.scopes.lifecycle.LifecycleScopes
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Test
 
-class LifecycleScopesStoreTest {
+class CachingLifecycleScopesTest {
 
     private val lifecycle = MutableLifecycle<TestLifecycle>()
-
-    private val lifecycleScopesStore =
-        LifecycleScopesStore<String, TestLifecycle>(TestLifecycle.DESTROY) {
-            LifecycleScopes(lifecycle)
-        }
+    private val lifecycleScopes = LifecycleScopes(lifecycle)
+    private val cacheLifecycleScopes = CachingLifecycleScopes(lifecycleScopes)
 
     @Test
-    fun testReusesLifecycleScopes() {
-        val lifecycleScopes1 = lifecycleScopesStore.get("key")
-        val lifecycleScopes2 = lifecycleScopesStore.get("key")
-        assertEquals(lifecycleScopes1, lifecycleScopes2)
-        lifecycle.onEvent(TestLifecycle.DESTROY)
-        val lifecycleScopes3 = lifecycleScopesStore.get("key")
-        assertNotEquals(lifecycleScopes1, lifecycleScopes3)
+    fun testReusesScopes() {
+        val scope1 = cacheLifecycleScopes.scopeFor(TestLifecycle.CREATE)
+        val scope2 = cacheLifecycleScopes.scopeFor(TestLifecycle.CREATE)
+        assertEquals(scope1, scope2)
+        lifecycle.onEvent(TestLifecycle.CREATE)
+        val scope3 = cacheLifecycleScopes.scopeFor(TestLifecycle.CREATE)
+        assertNotEquals(scope1, scope3)
     }
 }

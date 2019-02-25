@@ -14,32 +14,32 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.cache
+package com.ivianuu.scopes.common
 
 import com.ivianuu.scopes.Scope
-import com.ivianuu.scopes.lifecycle.LifecycleScopes
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
 
 /**
- * [LifecycleScopes] which re uses open [Scope]s
+ * A cache for [Scope]s
  */
-class CacheLifecycleScopes<T>(private val wrapped: LifecycleScopes<T>) :
-    LifecycleScopes<T> by wrapped {
+class ScopeCache<K>(private val factory: (K) -> Scope) {
 
-    private val scopes = mutableMapOf<T, Scope>()
-
+    private val scopes = mutableMapOf<K, Scope>()
     private val lock = ReentrantLock()
 
-    override fun scopeFor(event: T): Scope = lock.withLock {
-        scopes.getOrPut(event) {
-            wrapped.scopeFor(event).also { trackClose(it, event) }
+    /**
+     * Returns the [Scope] for the given [key]
+     */
+    fun get(key: K): Scope = lock.withLock {
+        scopes.getOrPut(key) {
+            factory(key).also { trackClose(it, key) }
         }
     }
 
-    private fun trackClose(scope: Scope, event: T) {
+    private fun trackClose(scope: Scope, key: K) {
         scope.addListener {
-            lock.withLock { scopes.remove(event) }
+            lock.withLock { scopes.remove(key) }
         }
     }
 }

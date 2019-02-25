@@ -20,6 +20,7 @@ package com.ivianuu.scopes
  * A scope is a component which is alive for a unspecified time and will get close eventually
  */
 interface Scope {
+
     /**
      * Whether or not this scope is already closed
      */
@@ -34,6 +35,7 @@ interface Scope {
      * Removes the [listener] if previously added via [addListener]
      */
     fun removeListener(listener: CloseListener)
+
 }
 
 typealias CloseListener = () -> Unit
