@@ -17,7 +17,7 @@
 package com.ivianuu.scopes
 
 /**
- * A scope is a component which is alive for a unspecified time and will get close eventually
+ * A scope is a component which is alive for a unspecified time and will get closed eventually
  */
 interface Scope {
 
