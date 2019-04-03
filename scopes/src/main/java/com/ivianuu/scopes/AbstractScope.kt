@@ -16,6 +16,7 @@
 
 package com.ivianuu.scopes
 
+import com.ivianuu.closeable.Closeable
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
@@ -31,13 +32,15 @@ abstract class AbstractScope : Scope {
     private val listeners = mutableSetOf<CloseListener>()
     private val listenersLock = ReentrantLock()
 
-    override fun addListener(listener: CloseListener) {
+    override fun addListener(listener: CloseListener): Closeable {
         if (_closed.get()) {
             listener()
-            return
+            return Closeable { removeListener(listener) }
         }
 
         listenersLock.withLock { listeners.add(listener) }
+
+        return Closeable { removeListener(listener) }
     }
 
     override fun removeListener(listener: CloseListener): Unit = listenersLock.withLock {

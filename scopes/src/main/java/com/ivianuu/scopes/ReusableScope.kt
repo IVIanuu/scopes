@@ -16,6 +16,7 @@
 
 package com.ivianuu.scopes
 
+import com.ivianuu.closeable.Closeable
 import java.util.concurrent.atomic.AtomicBoolean
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
@@ -32,9 +33,8 @@ class ReusableScope : Scope {
 
     private val internalScopeLock = ReentrantLock()
 
-    override fun addListener(listener: CloseListener) {
+    override fun addListener(listener: CloseListener): Closeable =
         internalScope.addListener(listener)
-    }
 
     override fun removeListener(listener: CloseListener) {
         internalScope.removeListener(listener)
