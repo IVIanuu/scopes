@@ -40,4 +40,7 @@ interface Scope {
 
 }
 
+/**
+ * Will be invoked when a [Scope] gets closed
+ */
 typealias CloseListener = () -> Unit

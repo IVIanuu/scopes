@@ -31,4 +31,4 @@ interface ScopeOwner {
  */
 fun ScopeOwner(scope: Scope): ScopeOwner = DefaultScopeOwner(scope)
 
-class DefaultScopeOwner(override val scope: Scope) : ScopeOwner
+internal class DefaultScopeOwner(override val scope: Scope) : ScopeOwner

@@ -17,8 +17,6 @@
 package com.ivianuu.scopes.common
 
 import com.ivianuu.scopes.ScopeOwner
-import java.util.concurrent.locks.ReentrantLock
-import kotlin.concurrent.withLock
 
 /**
  * A cache for [ScopeOwner]s
@@ -26,20 +24,23 @@ import kotlin.concurrent.withLock
 class ScopeOwnerCache<K>(private val factory: (K) -> ScopeOwner) {
 
     private val scopeOwners = mutableMapOf<K, ScopeOwner>()
-    private val lock = ReentrantLock()
 
     /**
      * Returns the [ScopeOwner] for the given [key]
      */
-    fun get(key: K): ScopeOwner = lock.withLock {
-        scopeOwners.getOrPut(key) {
-            factory(key).also { trackClose(it, key) }
+    fun get(key: K): ScopeOwner {
+        return synchronized(this) {
+            scopeOwners.getOrPut(key) {
+                factory(key).also { trackClose(it, key) }
+            }
         }
     }
 
     private fun trackClose(scopeOwner: ScopeOwner, key: K) {
         scopeOwner.scope.addListener {
-            lock.withLock { scopeOwners.remove(key) }
+            synchronized(this) {
+                scopeOwners.remove(key)
+            }
         }
     }
 }

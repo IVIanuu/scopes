@@ -18,8 +18,6 @@ package com.ivianuu.scopes
 
 import com.ivianuu.closeable.Closeable
 import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.locks.ReentrantLock
-import kotlin.concurrent.withLock
 
 /**
  * A [Scope] which can be re used
@@ -29,34 +27,49 @@ class ReusableScope : Scope {
     override val isClosed: Boolean get() = _closed.get()
     private val _closed = AtomicBoolean(false)
 
-    private var internalScope = MutableScope()
+    private val listeners = mutableListOf<CloseListener>()
 
-    private val internalScopeLock = ReentrantLock()
+    override fun addListener(listener: CloseListener): Closeable {
+        if (_closed.get()) {
+            listener()
+            return Closeable { } // todo how should we handle this
+        }
 
-    override fun addListener(listener: CloseListener): Closeable =
-        internalScope.addListener(listener)
+        synchronized(this) { listeners.add(listener) }
 
-    override fun removeListener(listener: CloseListener) {
-        internalScope.removeListener(listener)
+        return Closeable { removeListener(listener) }
+    }
+
+    override fun removeListener(listener: CloseListener): Unit = synchronized(this) {
+        listeners.remove(listener)
+    }
+
+    /**
+     * Finally terminates this scope any other call to [clear] or [close] will no op
+     */
+    fun close() {
+        if (!_closed.getAndSet(true)) {
+            notifyListeners()
+        }
     }
 
     /**
      * Clears all current listeners and dispatches the close event to them
      * This scope is still intact after that
      */
-    fun clear(): Unit = internalScopeLock.withLock {
+    fun clear() {
         if (!_closed.get()) {
-            internalScope.close()
-            internalScopeLock.withLock { internalScope = MutableScope() }
+            notifyListeners()
         }
     }
 
-    /**
-     * Finally terminates this scope any other call to [clear] or [close] will no op
-     */
-    fun close(): Unit = internalScopeLock.withLock {
-        if (!_closed.getAndSet(true)) {
-            internalScope.close()
+    private fun notifyListeners() {
+        val listeners = synchronized(this) {
+            val tmp = listeners.toList()
+            listeners.clear()
+            tmp
         }
+        listeners.forEach { it() }
     }
+
 }

@@ -18,8 +18,6 @@ package com.ivianuu.scopes.common
 
 import com.ivianuu.scopes.Scope
 import com.ivianuu.scopes.lifecycle.LifecycleScopes
-import java.util.concurrent.locks.ReentrantLock
-import kotlin.concurrent.withLock
 
 /**
  * [LifecycleScopes] which re uses open [Scope]s
@@ -28,17 +26,19 @@ class CachingLifecycleScopes<T>(private val wrapped: LifecycleScopes<T>) : Lifec
 
     private val scopes = mutableMapOf<T, Scope>()
 
-    private val lock = ReentrantLock()
-
-    override fun scopeFor(event: T): Scope = lock.withLock {
-        scopes.getOrPut(event) {
-            wrapped.scopeFor(event).also { trackClose(it, event) }
+    override fun scopeFor(event: T): Scope {
+        return synchronized(this) {
+            scopes.getOrPut(event) {
+                wrapped.scopeFor(event).also { trackClose(it, event) }
+            }
         }
     }
 
     private fun trackClose(scope: Scope, event: T) {
         scope.addListener {
-            lock.withLock { scopes.remove(event) }
+            synchronized(this) {
+                scopes.remove(event)
+            }
         }
     }
 }

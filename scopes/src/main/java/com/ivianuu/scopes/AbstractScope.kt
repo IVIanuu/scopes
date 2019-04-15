@@ -18,8 +18,6 @@ package com.ivianuu.scopes
 
 import com.ivianuu.closeable.Closeable
 import java.util.concurrent.atomic.AtomicBoolean
-import java.util.concurrent.locks.ReentrantLock
-import kotlin.concurrent.withLock
 
 /**
  * A base scope which handles listeners and the closed state and all listeners in a thread safe way
@@ -29,33 +27,34 @@ abstract class AbstractScope : Scope {
     override val isClosed: Boolean get() = _closed.get()
     private val _closed = AtomicBoolean(false)
 
-    private val listeners = mutableSetOf<CloseListener>()
-    private val listenersLock = ReentrantLock()
+    private val listeners = mutableListOf<CloseListener>()
 
     override fun addListener(listener: CloseListener): Closeable {
         if (_closed.get()) {
             listener()
-            return Closeable { removeListener(listener) }
+            return Closeable { } // todo how should we handle this
         }
 
-        listenersLock.withLock { listeners.add(listener) }
+        synchronized(this) { listeners.add(listener) }
 
         return Closeable { removeListener(listener) }
     }
 
-    override fun removeListener(listener: CloseListener): Unit = listenersLock.withLock {
+    override fun removeListener(listener: CloseListener): Unit = synchronized(this) {
         listeners.remove(listener)
     }
 
     /**
      * Closes this scope
      */
-    protected open fun close(): Unit = listenersLock.withLock {
+    protected open fun close() {
         if (!_closed.getAndSet(true)) {
-            listenersLock.withLock {
-                listeners.toList().forEach { it() }
+            val listeners = synchronized(this) {
+                val tmp = listeners.toList()
                 listeners.clear()
+                tmp
             }
+            listeners.forEach { it() }
         }
     }
 }
