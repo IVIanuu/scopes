@@ -19,8 +19,6 @@ object Versions {
     const val androidGradlePlugin = "3.4.0"
 
     const val androidxAppCompat = "1.1.0-alpha04"
-    const val androidxFragment = "1.1.0-alpha06"
-    const val androidxLifecycle = "2.1.0-alpha04"
 
     const val bintray = "1.8.4"
 
@@ -43,10 +41,6 @@ object Deps {
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
 
     const val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.androidxAppCompat}"
-    const val androidxFragment = "androidx.fragment:fragment:${Versions.androidxFragment}"
-
-    const val androidxLifecycleExtensions =
-        "androidx.lifecycle:lifecycle-extensions:${Versions.androidxLifecycle}"
 
     const val bintrayGradlePlugin =
         "com.jfrog.bintray.gradle:gradle-bintray-plugin:${Versions.bintray}"

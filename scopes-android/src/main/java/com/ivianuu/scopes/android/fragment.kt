@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.fragment
+package com.ivianuu.scopes.android
 
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import com.ivianuu.scopes.Scope
-import com.ivianuu.scopes.android.lifecycle.onCreate
-import com.ivianuu.scopes.android.lifecycle.onDestroy
-import com.ivianuu.scopes.android.lifecycle.onPause
-import com.ivianuu.scopes.android.lifecycle.onResume
-import com.ivianuu.scopes.android.lifecycle.onStart
-import com.ivianuu.scopes.android.lifecycle.onStop
-import com.ivianuu.scopes.android.lifecycle.scopeFor
+import com.ivianuu.scopes.android.onCreate
+import com.ivianuu.scopes.android.onDestroy
+import com.ivianuu.scopes.android.onPause
+import com.ivianuu.scopes.android.onResume
+import com.ivianuu.scopes.android.onStart
+import com.ivianuu.scopes.android.onStop
+import com.ivianuu.scopes.android.scopeFor
 
 fun Fragment.viewScopeFor(event: Lifecycle.Event): Scope = viewLifecycleOwner.scopeFor(event)
 

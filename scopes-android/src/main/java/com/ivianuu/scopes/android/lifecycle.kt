@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.android.lifecycle
+package com.ivianuu.scopes.android
 
+import androidx.lifecycle.GenericLifecycleObserver
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Lifecycle.Event.ON_CREATE
 import androidx.lifecycle.Lifecycle.Event.ON_DESTROY
@@ -23,10 +24,16 @@ import androidx.lifecycle.Lifecycle.Event.ON_PAUSE
 import androidx.lifecycle.Lifecycle.Event.ON_RESUME
 import androidx.lifecycle.Lifecycle.Event.ON_START
 import androidx.lifecycle.Lifecycle.Event.ON_STOP
-import com.ivianuu.lifecycle.android.lifecycle.AndroidLifecycle
+import com.ivianuu.lifecycle.AbstractLifecycle
 import com.ivianuu.scopes.Scope
 import com.ivianuu.scopes.common.LifecycleScopesCache
 import com.ivianuu.scopes.lifecycle.LifecycleScopes
+
+private class AndroidLifecycle(lifecycle: Lifecycle) : AbstractLifecycle<Lifecycle.Event>() {
+    init {
+        lifecycle.addObserver(GenericLifecycleObserver { _, event -> onEvent(event) })
+    }
+}
 
 private val lifecycleScopesStore =
     LifecycleScopesCache<Lifecycle, Lifecycle.Event>(ON_DESTROY) {
@@ -34,7 +41,7 @@ private val lifecycleScopesStore =
     }
 
 val Lifecycle.lifecycleScopes: LifecycleScopes<Lifecycle.Event>
-    get() = lifecycleScopesStore.get(this)
+    get() = com.ivianuu.scopes.android.lifecycleScopesStore.get(this)
 
 fun Lifecycle.scopeFor(event: Lifecycle.Event): Scope =
     lifecycleScopes.scopeFor(event)

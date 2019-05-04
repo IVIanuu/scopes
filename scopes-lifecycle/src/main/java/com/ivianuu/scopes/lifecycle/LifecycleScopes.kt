@@ -42,4 +42,4 @@ interface LifecycleScopes<T> {
 fun <T> LifecycleScopes(lifecycle: Lifecycle<T>): LifecycleScopes<T> =
     DefaultLifecycleScopes(lifecycle)
 
-class DefaultLifecycleScopes<T>(override val lifecycle: Lifecycle<T>) : LifecycleScopes<T>
+private class DefaultLifecycleScopes<T>(override val lifecycle: Lifecycle<T>) : LifecycleScopes<T>

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.android.lifecycle
+package com.ivianuu.scopes.android
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
