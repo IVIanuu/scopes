@@ -16,6 +16,7 @@
 
 package com.ivianuu.scopes.rx
 
+import com.ivianuu.scopes.CloseListener
 import com.ivianuu.scopes.Scope
 import io.reactivex.disposables.Disposable
 import io.reactivex.internal.disposables.DisposableHelper
@@ -33,7 +34,7 @@ private class ScopeDisposable(
 
     private val disposable = AtomicReference<Disposable>(disposable)
 
-    private val listener = { dispose() }
+    private val listener: CloseListener = { dispose() }
 
     init {
         scope.addListener(listener)
