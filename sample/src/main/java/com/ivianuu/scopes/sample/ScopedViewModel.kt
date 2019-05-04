@@ -16,26 +16,22 @@
 
 package com.ivianuu.scopes.sample
 
-import androidx.annotation.CallSuper
 import androidx.lifecycle.ViewModel
-import com.ivianuu.scopes.MutableScope
-import com.ivianuu.scopes.Scope
+import com.ivianuu.scopes.android.scope
 
 /**
  * @author Manuel Wrage (IVIanuu)
  */
 class ScopedViewModel : ViewModel() {
 
-    val scope: Scope get() = _scope
-    private val _scope = MutableScope()
-
     init {
+        d { "on init" }
         scope.addListener { d { "on close" } }
     }
 
-    @CallSuper
     override fun onCleared() {
-        _scope.close()
         super.onCleared()
+        d { "on cleared" }
     }
+
 }

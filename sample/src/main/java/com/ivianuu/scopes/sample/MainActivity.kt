@@ -18,28 +18,30 @@ package com.ivianuu.scopes.sample
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
+import com.ivianuu.scopes.android.onCreate
+import com.ivianuu.scopes.android.onDestroy
+import com.ivianuu.scopes.android.onStop
 import com.ivianuu.scopes.coroutines.cancelBy
 import com.ivianuu.scopes.rx.disposeBy
 import io.reactivex.Observable
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import java.util.concurrent.TimeUnit
-import kotlin.coroutines.CoroutineContext
 
 class MainActivity : AppCompatActivity(), CoroutineScope {
 
-    private val job =
-        Job().cancelBy(onDestroy)
-
-    override val coroutineContext: CoroutineContext
-        get() = job
+    override val coroutineContext by lazy { Job().cancelBy(onDestroy) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(MyView(this))
 
-        val viewModel = ViewModelProviders.of(this)[ScopedViewModel::class.java]
+        val viewModel =
+            ViewModelProvider(
+                this,
+                ViewModelProvider.NewInstanceFactory()
+            )[ScopedViewModel::class.java]
 
         onCreate.addListener { d { "create closed" } }
         onCreate.addListener { d { "create 2 closed" } }

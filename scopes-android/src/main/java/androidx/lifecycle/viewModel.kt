@@ -14,25 +14,10 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.lifecycle
+package androidx.lifecycle
 
-import com.ivianuu.lifecycle.Lifecycle
-import com.ivianuu.lifecycle.LifecycleListener
-import com.ivianuu.scopes.AbstractScope
-
-internal class LifecycleScope<T>(
-    private val lifecycle: Lifecycle<T>,
-    private val event: T
-) : AbstractScope(), LifecycleListener<T> {
-
-    init {
-        lifecycle.addListener(this)
-    }
-
-    override fun invoke(e: T) {
-        if (e == event) {
-            lifecycle.removeListener(this)
-            close()
-        }
-    }
+internal fun ViewModel.set(key: String, value: Any?) {
+    setTagIfAbsent(key, value)
 }
+
+internal fun <T> ViewModel.get(key: String): T? = getTag(key)

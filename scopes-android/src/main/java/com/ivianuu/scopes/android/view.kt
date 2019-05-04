@@ -38,10 +38,7 @@ val View.scopeOwner: ScopeOwner
 val View.scope: Scope
     get() = scopeOwner.scope
 
-/**
- * A [Scope] for [View]s
- */
-class ViewScope(private val view: View) : AbstractScope() {
+private class ViewScope(private val view: View) : AbstractScope() {
 
     init {
         val isAttached =

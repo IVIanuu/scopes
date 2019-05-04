@@ -39,10 +39,7 @@ val Dialog.scopeOwner: ScopeOwner
 val Dialog.scope: Scope
     get() = scopeOwner.scope
 
-/**
- * A [Scope] for [Dialog]s
- */
-class DialogScope(dialog: Dialog) : AbstractScope() {
+private class DialogScope(dialog: Dialog) : AbstractScope() {
 
     init {
         val window = dialog.window ?: throw OutsideScopeException("not attached to window")
