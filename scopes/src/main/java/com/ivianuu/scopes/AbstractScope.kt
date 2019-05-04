@@ -16,7 +16,6 @@
 
 package com.ivianuu.scopes
 
-import com.ivianuu.closeable.Closeable
 import java.util.concurrent.atomic.AtomicBoolean
 
 /**
@@ -29,15 +28,12 @@ abstract class AbstractScope : Scope {
 
     private val listeners = mutableListOf<CloseListener>()
 
-    override fun addListener(listener: CloseListener): Closeable {
+    override fun addListener(listener: CloseListener) {
         if (_closed.get()) {
             listener()
-            return Closeable { } // todo how should we handle this
         }
 
         synchronized(this) { listeners.add(listener) }
-
-        return Closeable { removeListener(listener) }
     }
 
     override fun removeListener(listener: CloseListener): Unit = synchronized(this) {

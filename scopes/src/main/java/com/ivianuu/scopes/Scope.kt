@@ -16,8 +16,6 @@
 
 package com.ivianuu.scopes
 
-import com.ivianuu.closeable.Closeable
-
 /**
  * A scope is a component which is alive for a unspecified time and will get closed eventually
  */
@@ -31,7 +29,7 @@ interface Scope {
     /**
      * Invokes [listener] when this scope gets closed
      */
-    fun addListener(listener: CloseListener): Closeable
+    fun addListener(listener: CloseListener)
 
     /**
      * Removes the [listener] if previously added via [addListener]
