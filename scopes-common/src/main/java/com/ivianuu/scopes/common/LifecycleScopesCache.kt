@@ -17,6 +17,7 @@
 package com.ivianuu.scopes.common
 
 import com.ivianuu.scopes.lifecycle.LifecycleScopes
+import java.util.concurrent.ConcurrentHashMap
 
 /**
  * A cache for [LifecycleScopes]s
@@ -26,7 +27,7 @@ class LifecycleScopesCache<K, E>(
     private val factory: (K) -> LifecycleScopes<E>
 ) {
 
-    private val lifecycleScopes = mutableMapOf<K, LifecycleScopes<E>>()
+    private val lifecycleScopes = ConcurrentHashMap<K, LifecycleScopes<E>>()
 
     /**
      * Returns [lifecycleScopes] for the given [key]
@@ -40,7 +41,7 @@ class LifecycleScopesCache<K, E>(
 
     private fun trackTermination(scopes: LifecycleScopes<E>, key: K) {
         scopes.scopeFor(terminationEvent).addListener {
-            synchronized(this) { lifecycleScopes.remove(key) }
+            lifecycleScopes.remove(key)
         }
     }
 }

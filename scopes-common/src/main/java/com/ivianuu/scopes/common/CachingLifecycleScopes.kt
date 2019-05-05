@@ -18,27 +18,22 @@ package com.ivianuu.scopes.common
 
 import com.ivianuu.scopes.Scope
 import com.ivianuu.scopes.lifecycle.LifecycleScopes
+import java.util.concurrent.ConcurrentHashMap
 
 /**
  * [LifecycleScopes] which re uses open [Scope]s
  */
 class CachingLifecycleScopes<T>(private val wrapped: LifecycleScopes<T>) : LifecycleScopes<T> by wrapped {
 
-    private val scopes = mutableMapOf<T, Scope>()
+    private val scopes = ConcurrentHashMap<T, Scope>()
 
     override fun scopeFor(event: T): Scope {
-        return synchronized(this) {
-            scopes.getOrPut(event) {
-                wrapped.scopeFor(event).also { trackClose(it, event) }
-            }
+        return scopes.getOrPut(event) {
+            wrapped.scopeFor(event).also { trackClose(it, event) }
         }
     }
 
     private fun trackClose(scope: Scope, event: T) {
-        scope.addListener {
-            synchronized(this) {
-                scopes.remove(event)
-            }
-        }
+        scope.addListener { scopes.remove(event) }
     }
 }

@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity(), CoroutineScope {
 
-    override val coroutineContext by lazy { Job().cancelBy(onDestroy) }
+    override val coroutineContext = Job().cancelBy(onDestroy)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

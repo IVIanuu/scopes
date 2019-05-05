@@ -18,6 +18,7 @@ package com.ivianuu.scopes.coroutines
 
 import com.ivianuu.scopes.CloseListener
 import com.ivianuu.scopes.Scope
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Job
 
 /**
@@ -36,8 +37,9 @@ private class ScopeJob(
         scope.addListener(listener)
     }
 
-    override fun cancel() {
+    override fun cancel(cause: CancellationException?) {
         scope.removeListener(listener)
-        job.cancel()
+        job.cancel(cause)
     }
+
 }

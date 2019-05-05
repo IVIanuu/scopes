@@ -17,30 +17,23 @@
 package com.ivianuu.scopes.common
 
 import com.ivianuu.scopes.Scope
+import java.util.concurrent.ConcurrentHashMap
 
 /**
  * A cache for [Scope]s
  */
 class ScopeCache<K>(private val factory: (K) -> Scope) {
 
-    private val scopes = mutableMapOf<K, Scope>()
+    private val scopes = ConcurrentHashMap<K, Scope>()
 
     /**
      * Returns the [Scope] for the given [key]
      */
-    fun get(key: K): Scope {
-        return synchronized(this) {
-            scopes.getOrPut(key) {
-                factory(key).also { trackClose(it, key) }
-            }
-        }
+    fun get(key: K): Scope = scopes.getOrPut(key) {
+        factory(key).also { trackClose(it, key) }
     }
 
     private fun trackClose(scope: Scope, key: K) {
-        scope.addListener {
-            synchronized(this) {
-                scopes.remove(key)
-            }
-        }
+        scope.addListener { scopes.remove(key) }
     }
 }

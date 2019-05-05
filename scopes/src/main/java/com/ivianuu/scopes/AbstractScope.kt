@@ -31,6 +31,7 @@ abstract class AbstractScope : Scope {
     override fun addListener(listener: CloseListener) {
         if (_closed.get()) {
             listener()
+            return
         }
 
         synchronized(this) { listeners.add(listener) }
