@@ -30,25 +30,23 @@ fun Disposable.disposeBy(scope: Scope): Disposable = ScopeDisposable(scope, this
 private class ScopeDisposable(
     private val scope: Scope,
     disposable: Disposable
-) : Disposable {
-
-    private val disposable = AtomicReference<Disposable>(disposable)
+) : AtomicReference<Disposable>(disposable), Disposable {
 
     private val listener: CloseListener = { dispose() }
 
     init {
         scope.addListener(listener)
-        if (disposable.isDisposed) {
+        if (isDisposed) {
             dispose()
         }
     }
 
-    override fun isDisposed(): Boolean = DisposableHelper.isDisposed(disposable.get())
+    override fun isDisposed(): Boolean = DisposableHelper.isDisposed(get())
 
     override fun dispose() {
         if (!isDisposed) {
             scope.removeListener(listener)
-            DisposableHelper.dispose(disposable)
+            DisposableHelper.dispose(this)
         }
     }
 }

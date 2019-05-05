@@ -41,7 +41,7 @@ private val lifecycleScopesStore =
     }
 
 val Lifecycle.lifecycleScopes: LifecycleScopes<Lifecycle.Event>
-    get() = com.ivianuu.scopes.android.lifecycleScopesStore.get(this)
+    get() = lifecycleScopesStore.get(this)
 
 fun Lifecycle.scopeFor(event: Lifecycle.Event): Scope =
     lifecycleScopes.scopeFor(event)

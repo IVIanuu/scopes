@@ -1,5 +1,3 @@
-import java.io.File
-
 /*
  * Copyright 2018 Manuel Wrage
  *
@@ -29,4 +27,5 @@ dependencies {
     api(project(":scopes"))
     api(project(":scopes-lifecycle"))
     api(Deps.rxJava)
+    testImplementation(Deps.junit)
 }

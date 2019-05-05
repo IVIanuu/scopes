@@ -1,5 +1,3 @@
-import java.io.File
-
 /*
  * Copyright 2018 Manuel Wrage
  *
@@ -29,4 +27,5 @@ dependencies {
     api(Deps.kotlinStdLib)
     api(project(":scopes"))
     api(project(":scopes-lifecycle"))
+    testImplementation(Deps.junit)
 }
