@@ -35,9 +35,10 @@ private class ScopeDisposable(
     private val listener: CloseListener = { dispose() }
 
     init {
-        scope.addListener(listener)
         if (isDisposed) {
             dispose()
+        } else {
+            scope.addListener(listener)
         }
     }
 

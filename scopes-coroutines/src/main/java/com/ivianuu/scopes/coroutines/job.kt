@@ -34,7 +34,11 @@ private class ScopeJob(
     private val listener: CloseListener = { cancel() }
 
     init {
-        scope.addListener(listener)
+        if (isCancelled) {
+            cancel(null)
+        } else {
+            scope.addListener(listener)
+        }
     }
 
     override fun cancel(cause: CancellationException?) {
