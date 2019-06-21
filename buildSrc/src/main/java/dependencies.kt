@@ -26,7 +26,7 @@ object Versions {
 
     const val junit = "4.12"
 
-    const val kotlin = "1.3.31"
+    const val kotlin = "1.3.40"
 
     const val lifecycle = "0.0.1-dev-3"
 

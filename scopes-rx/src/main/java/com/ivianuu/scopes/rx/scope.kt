@@ -23,15 +23,15 @@ import io.reactivex.Completable
  * Completes when [this] gets closed
  */
 fun Scope.asCompletable(): Completable = Completable.create { e ->
-        val listener = {
-            if (!e.isDisposed) {
-                e.onComplete()
-            }
-        }
-
-        e.setCancellable(listener)
-
+    val listener = {
         if (!e.isDisposed) {
-            addListener(listener)
+            e.onComplete()
         }
     }
+
+    e.setCancellable(listener)
+
+    if (!e.isDisposed) {
+        addListener(listener)
+    }
+}

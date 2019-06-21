@@ -23,7 +23,8 @@ import java.util.concurrent.ConcurrentHashMap
 /**
  * [LifecycleScopes] which re uses open [Scope]s
  */
-class CachingLifecycleScopes<T>(private val wrapped: LifecycleScopes<T>) : LifecycleScopes<T> by wrapped {
+class CachingLifecycleScopes<T>(private val wrapped: LifecycleScopes<T>) :
+    LifecycleScopes<T> by wrapped {
 
     private val scopes = ConcurrentHashMap<T, Scope>()
 
