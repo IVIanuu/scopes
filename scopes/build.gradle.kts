@@ -1,5 +1,3 @@
-import java.io.File
-
 /*
  * Copyright 2018 Manuel Wrage
  *
@@ -17,11 +15,10 @@ import java.io.File
  */
 
 plugins {
-    id("java-library")
-    id("kotlin")
+    kotlin("jvm")
 }
 
-apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/java-compatibility-android.gradle")
+apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/java-8.gradle")
 apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/mvn-publish.gradle")
 
 dependencies {
