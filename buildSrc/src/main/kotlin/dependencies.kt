@@ -28,11 +28,11 @@ object Build {
 object Publishing {
     const val groupId = "com.ivianuu.scopes"
     const val vcsUrl = "https://github.com/IVIanuu/scopes"
-    const val version = "${Build.versionName}-dev14"
+    const val version = "${Build.versionName}-dev15"
 }
 
 object Versions {
-    const val androidGradlePlugin = "3.4.0"
+    const val androidGradlePlugin = "3.6.0-alpha05"
 
     const val androidxAppCompat = "1.1.0-alpha04"
 
