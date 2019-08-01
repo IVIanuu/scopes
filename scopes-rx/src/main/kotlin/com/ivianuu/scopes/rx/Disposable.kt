@@ -16,7 +16,6 @@
 
 package com.ivianuu.scopes.rx
 
-import com.ivianuu.scopes.CloseListener
 import com.ivianuu.scopes.Scope
 import io.reactivex.disposables.Disposable
 import io.reactivex.internal.disposables.DisposableHelper
@@ -32,21 +31,14 @@ private class ScopeDisposable(
     disposable: Disposable
 ) : AtomicReference<Disposable>(disposable), Disposable {
 
-    private val listener: CloseListener = { dispose() }
-
     init {
-        if (isDisposed) {
-            dispose()
-        } else {
-            scope.addListener(listener)
-        }
+        scope.onClose { dispose() }
     }
 
     override fun isDisposed(): Boolean = DisposableHelper.isDisposed(get())
 
     override fun dispose() {
         if (!isDisposed) {
-            scope.removeListener(listener)
             DisposableHelper.dispose(this)
         }
     }

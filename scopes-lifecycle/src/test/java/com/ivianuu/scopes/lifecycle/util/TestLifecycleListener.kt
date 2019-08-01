@@ -24,6 +24,6 @@ class TestLifecycleListener<T> : LifecycleListener<T> {
     private val _history = mutableListOf<T>()
 
     override fun invoke(p1: T) {
-        _history.add(p1)
+        _history += p1
     }
 }

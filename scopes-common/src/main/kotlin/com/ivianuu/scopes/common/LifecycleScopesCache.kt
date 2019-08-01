@@ -40,8 +40,8 @@ class LifecycleScopesCache<K, E>(
     }
 
     private fun trackTermination(scopes: LifecycleScopes<E>, key: K) {
-        scopes.scopeFor(terminationEvent).addListener {
-            lifecycleScopes.remove(key)
+        scopes.scopeFor(terminationEvent).onClose {
+            lifecycleScopes -= key
         }
     }
 }

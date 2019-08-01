@@ -26,7 +26,7 @@ class ScopedViewModel : ViewModel() {
 
     init {
         d { "on init" }
-        scope.addListener { d { "on close" } }
+        scope.onClose { d { "on close" } }
     }
 
     override fun onCleared() {

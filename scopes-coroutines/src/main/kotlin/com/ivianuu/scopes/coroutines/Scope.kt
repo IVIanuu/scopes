@@ -14,24 +14,17 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.rx
+package com.ivianuu.scopes.coroutines
 
 import com.ivianuu.scopes.Scope
-import io.reactivex.Completable
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlin.coroutines.resume
 
 /**
- * Completes when [this] gets closed
+ * Awaits the completion of this scope
  */
-fun Scope.asCompletable(): Completable = Completable.create { e ->
-    val listener = {
-        if (!e.isDisposed) {
-            e.onComplete()
-        }
-    }
-
-    e.setCancellable(listener)
-
-    if (!e.isDisposed) {
-        addListener(listener)
+suspend fun Scope.await() {
+    suspendCancellableCoroutine<Unit> {
+        onClose { it.resume(Unit) }
     }
 }

@@ -16,8 +16,6 @@
 
 package com.ivianuu.scopes.util
 
-import com.ivianuu.scopes.CloseListener
-
 class TestCloseListener : CloseListener {
     var closeCalls = 0
     override fun invoke() {

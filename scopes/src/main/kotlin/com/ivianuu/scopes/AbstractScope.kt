@@ -23,22 +23,18 @@ import java.util.concurrent.atomic.AtomicBoolean
  */
 abstract class AbstractScope : Scope {
 
-    override val isClosed: Boolean get() = _closed.get()
+    val isClosed: Boolean get() = _closed.get()
     private val _closed = AtomicBoolean(false)
 
-    private val listeners = mutableListOf<CloseListener>()
+    private val listeners = mutableListOf<() -> Unit>()
 
-    override fun addListener(listener: CloseListener) {
+    override fun onClose(callback: () -> Unit) {
         if (_closed.get()) {
-            listener()
+            callback()
             return
         }
 
-        synchronized(listeners) { listeners.add(listener) }
-    }
-
-    override fun removeListener(listener: CloseListener): Unit = synchronized(listeners) {
-        listeners.remove(listener)
+        synchronized(listeners) { listeners += callback }
     }
 
     /**

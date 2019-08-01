@@ -43,8 +43,8 @@ class MainActivity : AppCompatActivity(), CoroutineScope {
                 ViewModelProvider.NewInstanceFactory()
             )[ScopedViewModel::class.java]
 
-        onCreate.addListener { d { "create closed" } }
-        onCreate.addListener { d { "create 2 closed" } }
+        onCreate.onClose { d { "create closed" } }
+        onCreate.onClose { d { "create 2 closed" } }
 
         Observable.interval(1, TimeUnit.SECONDS)
             .doOnSubscribe { d { "on sub stop" } }

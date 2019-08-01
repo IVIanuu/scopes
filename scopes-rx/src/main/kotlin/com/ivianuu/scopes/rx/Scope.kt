@@ -14,26 +14,24 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.common
+package com.ivianuu.scopes.rx
 
-import com.ivianuu.scopes.ScopeOwner
-import java.util.concurrent.ConcurrentHashMap
+import com.ivianuu.scopes.Scope
+import io.reactivex.Completable
 
 /**
- * A cache for [ScopeOwner]s
+ * Completes when [this] gets closed
  */
-class ScopeOwnerCache<K>(private val factory: (K) -> ScopeOwner) {
-
-    private val scopeOwners = ConcurrentHashMap<K, ScopeOwner>()
-
-    /**
-     * Returns the [ScopeOwner] for the given [key]
-     */
-    fun get(key: K): ScopeOwner = scopeOwners.getOrPut(key) {
-        factory(key).also { trackClose(it, key) }
+fun Scope.asCompletable(): Completable = Completable.create { e ->
+    val listener = {
+        if (!e.isDisposed) {
+            e.onComplete()
+        }
     }
 
-    private fun trackClose(scopeOwner: ScopeOwner, key: K) {
-        scopeOwner.scope.addListener { scopeOwners.remove(key) }
+    e.setCancellable(listener)
+
+    if (!e.isDisposed) {
+        onClose(listener)
     }
 }

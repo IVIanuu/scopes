@@ -23,26 +23,22 @@ import java.util.concurrent.atomic.AtomicBoolean
  */
 class ReusableScope : Scope {
 
-    override val isClosed: Boolean get() = _closed.get()
+    val isClosed: Boolean get() = _closed.get()
     private val _closed = AtomicBoolean(false)
 
-    private val listeners = mutableListOf<CloseListener>()
+    private val listeners = mutableListOf<() -> Unit>()
 
-    override fun addListener(listener: CloseListener) {
+    override fun onClose(callback: () -> Unit) {
         if (_closed.get()) {
-            listener()
+            callback()
             return
         }
 
-        synchronized(this) { listeners.add(listener) }
-    }
-
-    override fun removeListener(listener: CloseListener): Unit = synchronized(this) {
-        listeners.remove(listener)
+        synchronized(listeners) { listeners += callback }
     }
 
     /**
-     * Finally terminates this scope any other call to [clear] or [close] will no op
+     * Finally terminates this scope any following call to [clear] or [close] will no op
      */
     fun close() {
         if (!_closed.getAndSet(true)) {
@@ -61,7 +57,7 @@ class ReusableScope : Scope {
     }
 
     private fun notifyListeners() {
-        val listeners = synchronized(this) {
+        val listeners = synchronized(listeners) {
             val tmp = listeners.toList()
             listeners.clear()
             tmp

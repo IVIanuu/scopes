@@ -35,6 +35,6 @@ class CachingLifecycleScopes<T>(private val wrapped: LifecycleScopes<T>) :
     }
 
     private fun trackClose(scope: Scope, event: T) {
-        scope.addListener { scopes.remove(event) }
+        scope.onClose { scopes -= event }
     }
 }

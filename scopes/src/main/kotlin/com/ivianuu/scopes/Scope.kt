@@ -18,27 +18,13 @@ package com.ivianuu.scopes
 
 /**
  * A scope is a component which is alive for a unspecified time and will get closed eventually
+ * It's used to stop heavy work or release resources
  */
 interface Scope {
 
     /**
-     * Whether or not this scope is already closed
+     * Invokes [callback] when this scope gets closed
      */
-    val isClosed: Boolean
-
-    /**
-     * Invokes [listener] when this scope gets closed
-     */
-    fun addListener(listener: CloseListener)
-
-    /**
-     * Removes the [listener] if previously added via [addListener]
-     */
-    fun removeListener(listener: CloseListener)
+    fun onClose(callback: () -> Unit)
 
 }
-
-/**
- * Will be invoked when a [Scope] gets closed
- */
-typealias CloseListener = () -> Unit

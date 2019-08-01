@@ -16,18 +16,30 @@
 
 package com.ivianuu.scopes.coroutines
 
-import com.ivianuu.scopes.CloseListener
 import com.ivianuu.scopes.Scope
-import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlin.coroutines.resume
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Job
 
 /**
- * Awaits the completion of this scope
+ * Cancels this job when the [scope] gets closed
  */
-suspend fun Scope.await() {
-    suspendCancellableCoroutine<Unit> {
-        val listener: CloseListener = { it.resume(Unit) }
-        it.invokeOnCancellation { removeListener(listener) }
-        addListener(listener)
+fun Job.cancelBy(scope: Scope): Job = ScopeJob(scope, this)
+
+private class ScopeJob(
+    private val scope: Scope,
+    private val job: Job
+) : Job by job {
+
+    init {
+        if (isCancelled) {
+            cancel(null)
+        } else {
+            scope.onClose { cancel() }
+        }
     }
+
+    override fun cancel(cause: CancellationException?) {
+        job.cancel(cause)
+    }
+
 }

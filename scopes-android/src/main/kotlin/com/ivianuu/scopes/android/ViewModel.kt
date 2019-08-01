@@ -19,41 +19,31 @@ package com.ivianuu.scopes.android
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.get
 import androidx.lifecycle.set
-import com.ivianuu.scopes.MutableScope
+import com.ivianuu.scopes.AbstractScope
 import com.ivianuu.scopes.Scope
-import com.ivianuu.scopes.ScopeOwner
 import java.io.Closeable
 
-private const val KEY_SCOPE_OWNER = "com.ivianuu.scopes.android.ViewModelScopeOwner"
+private const val KEY_SCOPE = "com.ivianuu.scopes.android.ViewModelScope"
 
 /**
- * Returns the [ScopeOwner] of this view model
+ * Returns the [Scope] of this view model which get's closed when the this view model get's cleared
  */
-val ViewModel.scopeOwner: ScopeOwner
+val ViewModel.scope: Scope
     get() {
-        var scopeOwner: ScopeOwner? = get(KEY_SCOPE_OWNER)
-        if (scopeOwner != null) {
-            return scopeOwner
+        var scope: Scope? = get(KEY_SCOPE)
+        if (scope != null) {
+            return scope
         }
 
-        scopeOwner = ViewModelScopeOwner()
+        scope = ViewModelScope()
 
-        set(KEY_SCOPE_OWNER, scopeOwner)
+        set(KEY_SCOPE, scope)
 
-        return scopeOwner
+        return scope
     }
 
-/**
- * Returns the [Scope] of this view model
- */
-val ViewModel.scope: Scope get() = scopeOwner.scope
-
-private class ViewModelScopeOwner : ScopeOwner, Closeable {
-
-    override val scope = MutableScope()
-
+private class ViewModelScope : AbstractScope(), Closeable {
     override fun close() {
-        scope.close()
+        super.close()
     }
-
 }
