@@ -16,14 +16,14 @@
 
 package com.ivianuu.scopes
 
-import com.ivianuu.scopes.util.TestCloseListener
+import com.ivianuu.scopes.util.TestCloseCallback
 import org.junit.Assert.*
 import org.junit.Test
 
 class ReusableScopeTest {
 
     private val scope = ReusableScope()
-    private val listener = TestCloseListener()
+    private val listener = TestCloseCallback()
 
     @Test
     fun testScopeNeverClosedOnClear() {
@@ -46,15 +46,4 @@ class ReusableScopeTest {
         assertEquals(1, listener.closeCalls)
     }
 
-    @Test
-    fun testRemoveListeners() {
-        val listener = TestCloseListener()
-
-        scope.onClose(listener)
-        scope.removeListener(listener)
-
-        scope.clear()
-
-        assertEquals(0, listener.closeCalls)
-    }
 }

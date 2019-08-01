@@ -16,45 +16,35 @@
 
 package com.ivianuu.scopes
 
-import com.ivianuu.scopes.util.TestCloseListener
+import com.ivianuu.scopes.util.TestCloseCallback
 import org.junit.Assert.*
 import org.junit.Test
 
 class MutableScopeTest {
 
     private val scope = MutableScope()
-    private val listener = TestCloseListener()
+    private val callback = TestCloseCallback()
 
     @Test
     fun testCloseScope() {
-        scope.onClose(listener)
-        assertEquals(0, listener.closeCalls)
+        scope.onClose(callback)
+        assertEquals(0, callback.closeCalls)
         assertFalse(scope.isClosed)
 
         scope.close()
-        assertEquals(1, listener.closeCalls)
+        assertEquals(1, callback.closeCalls)
         assertTrue(scope.isClosed)
 
         scope.close()
-        assertEquals(1, listener.closeCalls)
+        assertEquals(1, callback.closeCalls)
         assertTrue(scope.isClosed)
     }
 
     @Test
     fun testNewListenerAfterCloseWillGetNotified() {
         scope.close()
-        scope.onClose(listener)
-        assertEquals(1, listener.closeCalls)
-    }
-
-    @Test
-    fun testRemoveListeners() {
-        scope.onClose(listener)
-        scope.removeListener(listener)
-
-        scope.close()
-
-        assertEquals(0, listener.closeCalls)
+        scope.onClose(callback)
+        assertEquals(1, callback.closeCalls)
     }
 
 }

@@ -21,9 +21,9 @@ import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
 /**
- * Awaits the completion of this scope
+ * Resumes once this scope get's closed
  */
-suspend fun Scope.await() {
+suspend fun Scope.awaitClose() {
     suspendCancellableCoroutine<Unit> {
         onClose { it.resume(Unit) }
     }

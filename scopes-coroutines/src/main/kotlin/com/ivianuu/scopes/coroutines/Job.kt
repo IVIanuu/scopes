@@ -26,7 +26,7 @@ import kotlinx.coroutines.Job
 fun Job.cancelBy(scope: Scope): Job = ScopeJob(scope, this)
 
 private class ScopeJob(
-    private val scope: Scope,
+    scope: Scope,
     private val job: Job
 ) : Job by job {
 

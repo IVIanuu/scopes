@@ -41,6 +41,5 @@ dependencies {
     api(Deps.lifecycle)
     api(Deps.kotlinStdLib)
     api(project(":scopes"))
-
     testImplementation(Deps.junit)
 }
