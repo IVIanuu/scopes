@@ -37,10 +37,11 @@ plugins {
 
 apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/android-build-lib.gradle")
 apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/kt-source-sets-android.gradle")
-apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/mvn-publish.gradle")
 
 dependencies {
     api(project(":scopes"))
-    api(project(":scopes-common"))
     api(Deps.androidxAppCompat)
+    testImplementation(Deps.androidxTestJunit)
+    testImplementation(Deps.junit)
+    testImplementation(Deps.roboelectric)
 }

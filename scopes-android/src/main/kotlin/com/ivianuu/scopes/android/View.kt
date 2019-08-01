@@ -21,7 +21,7 @@ import android.view.View
 import com.ivianuu.scopes.AbstractScope
 import com.ivianuu.scopes.OutsideScopeException
 import com.ivianuu.scopes.Scope
-import com.ivianuu.scopes.common.ScopeCache
+import com.ivianuu.scopes.ScopeCache
 
 private val viewScopes = ScopeCache<View> { ViewScope(it) }
 

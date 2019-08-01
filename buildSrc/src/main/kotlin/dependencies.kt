@@ -35,6 +35,7 @@ object Versions {
     const val androidGradlePlugin = "3.5.0-rc01"
 
     const val androidxAppCompat = "1.1.0-alpha04"
+    const val androidxTestJunit = "1.1.1-alpha03"
 
     const val bintray = "1.8.4"
 
@@ -48,6 +49,8 @@ object Versions {
 
     const val mavenGradlePlugin = "2.1"
 
+    const val roboelectric = "4.0.2"
+
     const val rxJava = "2.2.8"
 }
 
@@ -55,6 +58,7 @@ object Deps {
     const val androidGradlePlugin = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}"
 
     const val androidxAppCompat = "androidx.appcompat:appcompat:${Versions.androidxAppCompat}"
+    const val androidxTestJunit = "androidx.test.ext:junit:${Versions.androidxTestJunit}"
 
     const val bintrayGradlePlugin =
         "com.jfrog.bintray.gradle:gradle-bintray-plugin:${Versions.bintray}"
@@ -73,6 +77,8 @@ object Deps {
 
     const val mavenGradlePlugin =
         "com.github.dcendents:android-maven-gradle-plugin:${Versions.mavenGradlePlugin}"
+
+    const val roboelectric = "org.robolectric:robolectric:${Versions.roboelectric}"
 
     const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}"
 }

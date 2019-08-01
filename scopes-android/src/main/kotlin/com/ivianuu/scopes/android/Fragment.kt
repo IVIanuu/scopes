@@ -19,10 +19,6 @@ package com.ivianuu.scopes.android
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import com.ivianuu.scopes.Scope
-import com.ivianuu.scopes.lifecycle.LifecycleScopes
-
-val Fragment.viewLifecycleScopes: LifecycleScopes<Lifecycle.Event>
-    get() = viewLifecycleOwner.lifecycleScopes
 
 fun Fragment.viewScopeFor(event: Lifecycle.Event): Scope = viewLifecycleOwner.scopeFor(event)
 

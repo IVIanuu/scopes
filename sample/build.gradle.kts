@@ -44,8 +44,6 @@ dependencies {
     implementation(Deps.androidxAppCompat)
     implementation(project(":scopes"))
     implementation(project(":scopes-android"))
-    implementation(project(":scopes-common"))
     implementation(project(":scopes-coroutines"))
-    implementation(project(":scopes-lifecycle"))
     implementation(project(":scopes-rx"))
 }

@@ -12,9 +12,7 @@
             <option value="$PROJECT_DIR$/sample" />
             <option value="$PROJECT_DIR$/scopes" />
             <option value="$PROJECT_DIR$/scopes-android" />
-            <option value="$PROJECT_DIR$/scopes-common" />
             <option value="$PROJECT_DIR$/scopes-coroutines" />
-            <option value="$PROJECT_DIR$/scopes-lifecycle" />
             <option value="$PROJECT_DIR$/scopes-rx" />
           </set>
         </option>

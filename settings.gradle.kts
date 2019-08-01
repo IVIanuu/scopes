@@ -18,8 +18,6 @@ include(
     ":sample",
     ":scopes",
     ":scopes-android",
-    ":scopes-common",
     ":scopes-coroutines",
-    ":scopes-lifecycle",
     ":scopes-rx"
 )

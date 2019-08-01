@@ -6,20 +6,9 @@
       <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" group="scopes/sample" />
       <module fileurl="file://$PROJECT_DIR$/scopes.iml" filepath="$PROJECT_DIR$/scopes.iml" group="scopes" />
       <module fileurl="file://$PROJECT_DIR$/scopes-android/scopes-android.iml" filepath="$PROJECT_DIR$/scopes-android/scopes-android.iml" group="scopes/scopes-android" />
-      <module fileurl="file://$PROJECT_DIR$/buildSrc/scopes-buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/scopes-buildSrc.iml" group="scopes/buildSrc" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-common/scopes-common.iml" filepath="$PROJECT_DIR$/scopes-common/scopes-common.iml" group="scopes/scopes-common" />
       <module fileurl="file://$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" filepath="$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" group="scopes/scopes-coroutines" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-lifecycle/scopes-lifecycle.iml" filepath="$PROJECT_DIR$/scopes-lifecycle/scopes-lifecycle.iml" group="scopes/scopes-lifecycle" />
       <module fileurl="file://$PROJECT_DIR$/scopes-rx/scopes-rx.iml" filepath="$PROJECT_DIR$/scopes-rx/scopes-rx.iml" group="scopes/scopes-rx" />
-      <module fileurl="file://$PROJECT_DIR$/sample/scopes-sample.iml" filepath="$PROJECT_DIR$/sample/scopes-sample.iml" group="scopes/sample" />
       <module fileurl="file://$PROJECT_DIR$/scopes/scopes-scopes.iml" filepath="$PROJECT_DIR$/scopes/scopes-scopes.iml" group="scopes/scopes" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-android/scopes-scopes-android.iml" filepath="$PROJECT_DIR$/scopes-android/scopes-scopes-android.iml" group="scopes/scopes-android" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-common/scopes-scopes-common.iml" filepath="$PROJECT_DIR$/scopes-common/scopes-scopes-common.iml" group="scopes/scopes-common" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-coroutines/scopes-scopes-coroutines.iml" filepath="$PROJECT_DIR$/scopes-coroutines/scopes-scopes-coroutines.iml" group="scopes/scopes-coroutines" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-lifecycle/scopes-scopes-lifecycle.iml" filepath="$PROJECT_DIR$/scopes-lifecycle/scopes-scopes-lifecycle.iml" group="scopes/scopes-lifecycle" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-rx/scopes-scopes-rx.iml" filepath="$PROJECT_DIR$/scopes-rx/scopes-scopes-rx.iml" group="scopes/scopes-rx" />
-      <module fileurl="file://$PROJECT_DIR$/studio-projects-scopes.iml" filepath="$PROJECT_DIR$/studio-projects-scopes.iml" group="scopes" />
-      <module fileurl="file://$PROJECT_DIR$/scopes/studio-projects-scopes-scopes.iml" filepath="$PROJECT_DIR$/scopes/studio-projects-scopes-scopes.iml" group="scopes/scopes" />
     </modules>
   </component>
 </project>

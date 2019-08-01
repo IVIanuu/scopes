@@ -19,32 +19,35 @@ package com.ivianuu.scopes.android
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Lifecycle.Event.*
 import androidx.lifecycle.LifecycleEventObserver
-import androidx.lifecycle.LifecycleOwner
-import com.ivianuu.lifecycle.AbstractLifecycle
+import com.ivianuu.scopes.MutableScope
 import com.ivianuu.scopes.Scope
-import com.ivianuu.scopes.common.LifecycleScopesCache
-import com.ivianuu.scopes.lifecycle.LifecycleScopes
+import java.util.concurrent.ConcurrentHashMap
 
-private class AndroidLifecycle(lifecycle: Lifecycle) : AbstractLifecycle<Lifecycle.Event>() {
-    init {
-        lifecycle.addObserver(object : LifecycleEventObserver {
-            override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
-                onEvent(event)
+private val scopesByLifecycle =
+    ConcurrentHashMap<Lifecycle, ConcurrentHashMap<Lifecycle.Event, Scope>>()
+
+internal fun Lifecycle.scopeFor(event: Lifecycle.Event): Scope {
+    val scopes = scopesByLifecycle.getOrPut(this) {
+        ConcurrentHashMap<Lifecycle.Event, Scope>().also {
+            addObserver(LifecycleEventObserver { _, _ ->
+                if (currentState == Lifecycle.State.DESTROYED) {
+                    scopesByLifecycle.remove(this)
+                }
+            })
+        }
+    }
+
+    return scopes.getOrPut(event) {
+        val scope = MutableScope()
+        addObserver(LifecycleEventObserver { _, currentEvent ->
+            if (event == currentEvent) {
+                scope.close()
+                scopes.remove(event)
             }
         })
+        scope
     }
 }
-
-private val lifecycleScopesStore =
-    LifecycleScopesCache<Lifecycle, Lifecycle.Event>(ON_DESTROY) {
-        LifecycleScopes(AndroidLifecycle(it))
-    }
-
-val Lifecycle.lifecycleScopes: LifecycleScopes<Lifecycle.Event>
-    get() = lifecycleScopesStore.get(this)
-
-fun Lifecycle.scopeFor(event: Lifecycle.Event): Scope =
-    lifecycleScopes.scopeFor(event)
 
 val Lifecycle.onCreate: Scope get() = scopeFor(ON_CREATE)
 

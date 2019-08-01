@@ -27,7 +27,7 @@ import java.util.concurrent.atomic.AtomicReference
 fun Disposable.disposeBy(scope: Scope): Disposable = ScopeDisposable(scope, this)
 
 private class ScopeDisposable(
-    private val scope: Scope,
+    scope: Scope,
     disposable: Disposable
 ) : AtomicReference<Disposable>(disposable), Disposable {
 

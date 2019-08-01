@@ -40,7 +40,6 @@ apply(from = "https://raw.githubusercontent.com/IVIanuu/gradle-scripts/master/mv
 dependencies {
     api(Deps.kotlinStdLib)
     api(project(":scopes"))
-    api(project(":scopes-lifecycle"))
     api(Deps.rxJava)
     testImplementation(Deps.junit)
 }
