@@ -34,10 +34,10 @@ abstract class AbstractScope : Scope {
             return
         }
 
-        synchronized(this) { listeners.add(listener) }
+        synchronized(listeners) { listeners.add(listener) }
     }
 
-    override fun removeListener(listener: CloseListener): Unit = synchronized(this) {
+    override fun removeListener(listener: CloseListener): Unit = synchronized(listeners) {
         listeners.remove(listener)
     }
 
@@ -46,7 +46,7 @@ abstract class AbstractScope : Scope {
      */
     protected open fun close() {
         if (!_closed.getAndSet(true)) {
-            val listeners = synchronized(this) {
+            val listeners = synchronized(listeners) {
                 val tmp = listeners.toList()
                 listeners.clear()
                 tmp
