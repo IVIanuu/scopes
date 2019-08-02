@@ -16,7 +16,6 @@
 
 package com.ivianuu.scopes
 
-import com.ivianuu.scopes.util.TestCloseCallback
 import org.junit.Assert.*
 import org.junit.Test
 

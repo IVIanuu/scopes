@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.ivianuu.scopes.util
+package com.ivianuu.scopes
 
 class TestCloseCallback : () -> Unit {
     var closeCalls = 0

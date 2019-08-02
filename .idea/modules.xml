@@ -2,13 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" group="scopes/buildSrc" />
-      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" group="scopes/sample" />
-      <module fileurl="file://$PROJECT_DIR$/scopes.iml" filepath="$PROJECT_DIR$/scopes.iml" group="scopes" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-android/scopes-android.iml" filepath="$PROJECT_DIR$/scopes-android/scopes-android.iml" group="scopes/scopes-android" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" filepath="$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" group="scopes/scopes-coroutines" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-rx/scopes-rx.iml" filepath="$PROJECT_DIR$/scopes-rx/scopes-rx.iml" group="scopes/scopes-rx" />
-      <module fileurl="file://$PROJECT_DIR$/scopes/scopes-scopes.iml" filepath="$PROJECT_DIR$/scopes/scopes-scopes.iml" group="scopes/scopes" />
+      <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes.iml" filepath="$PROJECT_DIR$/scopes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-android/scopes-android.iml" filepath="$PROJECT_DIR$/scopes-android/scopes-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" filepath="$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes-rx/scopes-rx.iml" filepath="$PROJECT_DIR$/scopes-rx/scopes-rx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/scopes/scopes-scopes.iml" filepath="$PROJECT_DIR$/scopes/scopes-scopes.iml" />
     </modules>
   </component>
 </project>
