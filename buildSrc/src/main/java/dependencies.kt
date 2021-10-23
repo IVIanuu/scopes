@@ -28,7 +28,7 @@ object Versions {
 
     const val kotlin = "1.3.31"
 
-    const val lifecycle = "0.0.1-dev-3"
+    const val lifecycle = "dbeb014f"
 
     const val mavenGradlePlugin = "2.1"
 
@@ -51,9 +51,9 @@ object Deps {
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     const val kotlinStdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
 
-    const val lifecycle = "com.ivianuu.lifecycle:lifecycle:${Versions.lifecycle}"
+    const val lifecycle = "com.github.IVIanuu:lifecycle:${Versions.lifecycle}"
     const val lifecycleAndroidLifecycle =
-        "com.ivianuu.lifecycle:lifecycle-android-lifecycle:${Versions.lifecycle}"
+        "com.github.IVIanuu:lifecycle-android-lifecycle:${Versions.lifecycle}"
 
     const val mavenGradlePlugin =
         "com.github.dcendents:android-maven-gradle-plugin:${Versions.mavenGradlePlugin}"

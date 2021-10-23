@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Scopes.iml" filepath="$PROJECT_DIR$/Scopes.iml" />
-      <module fileurl="file://$PROJECT_DIR$/buildSrc/buildSrc.iml" filepath="$PROJECT_DIR$/buildSrc/buildSrc.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample/sample.iml" filepath="$PROJECT_DIR$/sample/sample.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scopes/scopes.iml" filepath="$PROJECT_DIR$/scopes/scopes.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-android/scopes-android.iml" filepath="$PROJECT_DIR$/scopes-android/scopes-android.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-common/scopes-common.iml" filepath="$PROJECT_DIR$/scopes-common/scopes-common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" filepath="$PROJECT_DIR$/scopes-coroutines/scopes-coroutines.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-lifecycle/scopes-lifecycle.iml" filepath="$PROJECT_DIR$/scopes-lifecycle/scopes-lifecycle.iml" />
-      <module fileurl="file://$PROJECT_DIR$/scopes-rx/scopes-rx.iml" filepath="$PROJECT_DIR$/scopes-rx/scopes-rx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/scopes.iml" filepath="$PROJECT_DIR$/.idea/scopes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scopes.buildSrc.iml" filepath="$PROJECT_DIR$/.idea/modules/scopes.buildSrc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample/scopes.sample.iml" filepath="$PROJECT_DIR$/.idea/modules/sample/scopes.sample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scopes/scopes.scopes.iml" filepath="$PROJECT_DIR$/.idea/modules/scopes/scopes.scopes.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scopes-android/scopes.scopes-android.iml" filepath="$PROJECT_DIR$/.idea/modules/scopes-android/scopes.scopes-android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scopes-common/scopes.scopes-common.iml" filepath="$PROJECT_DIR$/.idea/modules/scopes-common/scopes.scopes-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scopes-coroutines/scopes.scopes-coroutines.iml" filepath="$PROJECT_DIR$/.idea/modules/scopes-coroutines/scopes.scopes-coroutines.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scopes-lifecycle/scopes.scopes-lifecycle.iml" filepath="$PROJECT_DIR$/.idea/modules/scopes-lifecycle/scopes.scopes-lifecycle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/scopes-rx/scopes.scopes-rx.iml" filepath="$PROJECT_DIR$/.idea/modules/scopes-rx/scopes.scopes-rx.iml" />
     </modules>
   </component>
 </project>
